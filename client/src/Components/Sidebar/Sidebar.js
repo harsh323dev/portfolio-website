@@ -1,7 +1,7 @@
-// src/Components/Sidebar/Sidebar.js
 import React, { useState } from "react";
 import "./Sidebar.css";
 import Home from "../Home/Home";
+import About from "../About/About";
 import { BiCodeAlt } from "react-icons/bi";
 import SidebarList from "./SidebarList";
 
@@ -26,7 +26,8 @@ const Sidebar = () => {
 
       <div className={expandSidebar ? "content expanded" : "content collapsed"}>
         <Home />
-        {/* Later: About, WorkExperience, TechStack, Education, Projects, Certifications, Contact */}
+        <About />
+        {/* later: WorkExperience, TechStack, Education, Projects, Certifications, Contact */}
       </div>
     </div>
   );
