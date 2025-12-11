@@ -1,45 +1,90 @@
-.sidebar-profile-pic img{
-
-    border-radius: 90px;
-    margin-top: 10px;
-    height: 150px;
-    width: 150px;
-    display: flex;
-    vertical-align: middle;
-    margin: 0 auto;
-    object-fit: cover;
-    border: 3px solid yellow;
-
+/* Profile picture */
+.sidebar-profile-pic img {
+  border-radius: 999px;
+  margin-top: 16px;
+  height: 120px;
+  width: 120px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  border: 3px solid #f97316;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
-.navbar-items ul li{
-    color: white;
-    list-style-type: none;
-    cursor: pointer;
-    margin-top: 30px;
-    text-decoration: none;
+.navbar-items,
+.navbar-items-only-icons {
+  margin-top: 10px;
 }
 
-.navbar-items ul li svg{
-    margin-right: 25px;
-    margin-left: 10px;
+/* Expanded sidebar nav items */
+.navbar-items ul {
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+.navbar-items ul,
+.navbar-items-only-icons ul {
+  list-style: none;
+}
+
+.navbar-items ul li {
+  color: #e5e7eb;
+  cursor: pointer;
+  margin-top: 16px;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.navbar-items ul li svg {
+  margin-right: 12px;
+  margin-left: 4px;
+}
+
+.navbar-items ul li a {
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+.navbar-items ul li:hover {
+  background-color: #1f2937;
+  color: #f97316;
+  transform: translateX(3px);
+}
+
+/* Collapsed sidebar: icons only */
+.navbar-items-only-icons {
+  margin-top: 60px;
+}
+
+.navbar-items-only-icons ul {
+  padding-left: 0;
+  margin: 0;
 }
 
 .navbar-items-only-icons ul li {
-    margin-top: 30px;
-    cursor: pointer;
-    list-style-type: none;
+  margin: 14px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
-.navbar-items-only-icons ul li svg{
-    margin-left: 10px;
+.navbar-items-only-icons ul li::before {
+  content: none;
 }
 
-.navbar-items ul li a{
-    text-decoration: none;
+.navbar-items-only-icons ul li svg {
+  color: #e5e7eb;
+  font-size: 24px;
+  transition: color 0.2s ease, transform 0.1s ease;
 }
 
-.nav-item .active{
-    border-left: 2px solid yellow;
-    color: yellow;
+.navbar-items-only-icons ul li:hover svg {
+  color: #f97316;
+  transform: translateX(3px);
 }

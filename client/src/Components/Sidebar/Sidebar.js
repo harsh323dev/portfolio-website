@@ -1,11 +1,11 @@
+// src/Components/Sidebar/Sidebar.js
 import React, { useState } from "react";
 import "./Sidebar.css";
 import Home from "../Home/Home";
-
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { BiCodeAlt } from "react-icons/bi";
 import SidebarList from "./SidebarList";
 
-const Sidebar = ({ theme, changeTheme }) => {
+const Sidebar = () => {
   const [expandSidebar, setExpandSidebar] = useState(true);
 
   const handleExpandClick = () => {
@@ -14,34 +14,22 @@ const Sidebar = ({ theme, changeTheme }) => {
 
   return (
     <div className="container-fluid sidebar-section">
-      <div className={expandSidebar ? "sidebar-expand sidebar":"sidebar"}>
-
+      <div className={expandSidebar ? "sidebar sidebar-expand" : "sidebar"}>
         <div className="icon-for-sidebar-expand-and-collapse">
           <p onClick={handleExpandClick}>
-
-            {expandSidebar ? (
-              <BsChevronLeft size={30} />
-            ) : (
-              <BsChevronRight size={30} />
-            )}
-
+            <BiCodeAlt size={24} className="sidebar-toggle-icon" />
           </p>
         </div>
 
-        <SidebarList expandSidebar={expandSidebar}/>
-
-
+        <SidebarList expandSidebar={expandSidebar} />
       </div>
 
-      <div className="container">
-        <Home changeTheme={changeTheme} theme={theme}/>
+      <div className={expandSidebar ? "content expanded" : "content collapsed"}>
+        <Home />
+        {/* Later: About, WorkExperience, TechStack, Education, Projects, Certifications, Contact */}
       </div>
     </div>
   );
 };
 
 export default Sidebar;
-
-
-
-

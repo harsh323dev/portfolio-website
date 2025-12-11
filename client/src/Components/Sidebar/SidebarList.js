@@ -95,13 +95,13 @@ const SidebarList = ({ expandSidebar }) => {
             </li>
             <li className="nav-item">
               <Link
-                to="testimonial"
+                to="certifications"
                 spy={true}
                 smooth={true}
                 duration={100}
                 offset={-100}
               >
-                <FcSalesPerformance size={25} /> Testimonial
+                <FcSalesPerformance size={25} /> Certifications
               </Link>
             </li>
             <li className="nav-item">
@@ -189,7 +189,7 @@ const SidebarList = ({ expandSidebar }) => {
             </li>
             <li className="nav-item">
               <Link
-                to="testimonial"
+                to="certifications"
                 spy={true}
                 smooth={true}
                 duration={100}

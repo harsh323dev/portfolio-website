@@ -1,48 +1,79 @@
-.sidebar-section{
-    display: flex;
-    background-color: #030303da;
+/* src/Components/Sidebar/Sidebar.css */
+
+.sidebar-section {
+  display: flex;
+  background-color: #050816;
 }
 
-.sidebar{
-    height: 100vh;
-    background-color: #030303da;
-    width: 95px;
-    position: fixed;
-
+/* Sidebar base (collapsed width) */
+.sidebar {
+  height: 100vh;
+  background-color: #050816;
+  width: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-
+/* Expanded sidebar */
 .sidebar-expand {
-    width: 230px;
+  width: 230px;
 }
 
-.icon-for-sidebar-expand-and-collapse{
-
-    display: flex;
-    align-items: right;
-    justify-content: right;
-    cursor: pointer;
+/* Toggle icon container */
+.icon-for-sidebar-expand-and-collapse {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  padding: 10px 12px 0 12px;
 }
 
-.icon-for-sidebar-expand-and-collapse p svg{
-
-    background-color: #19092c;
-    padding: 5px;
-    color: white;
-    border-radius: 5px;
-    margin-top: 50px;
-
+/* Bright, visible toggle icon */
+.sidebar-toggle-icon {
+  background-color: #f97316;   /* bright orange */
+  padding: 6px;
+  color: #0b1020;              /* dark icon color */
+  border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
-
-.container-fluid{
-    padding-left: 0px!important;
-    padding-right: 0px!important;
-    overflow: hidden;
+.sidebar-toggle-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width:1000px) {
-    .sidebar{
-        display: none;
-    }
+/* CRA container reset */
+.container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Main content area next to sidebar */
+.content {
+  flex: 1;
+}
+
+/* When sidebar expanded (230px wide) */
+.content.expanded {
+  margin-left: 260px; /* 230 + some breathing room */
+}
+
+/* When sidebar collapsed (80px wide) */
+.content.collapsed {
+  margin-left: 100px; /* close to collapsed width; minimal dark gap */
+}
+
+/* Mobile: hide sidebar, content full width */
+@media (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .content.expanded,
+  .content.collapsed {
+    margin-left: 0;
+  }
 }
