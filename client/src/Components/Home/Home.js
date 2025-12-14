@@ -29,9 +29,9 @@ const Home = () => {
             <Typewriter
               options={{
                 strings: [
-                  "Java & Spring Boot Developer",
                   "Backend Developer",
                   "Full Stack Developer",
+                  "Java & Spring Boot Developer",
                   "Node.js Developer",
                   "Tech Enthusiast",
                   "Blockchain & Web3 Learner",
@@ -93,8 +93,7 @@ const Home = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <div className="button-for-action">
-            {/* later you can also switch this to scrollIntoView for contact */}
-            <a href="#contactsection">
+            <a href="#contactsection" className="button-link">
               <div className="hire-me-button">Contact Me</div>
             </a>
             <div className="get-resume-button">

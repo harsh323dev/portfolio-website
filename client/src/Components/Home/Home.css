@@ -22,7 +22,7 @@
 
 .home-content h3 {
   margin-top: 10px;
-  color: #60a5fa;  /* soft blue subtitle */
+  color: #60a5fa;
   font-size: 1.1rem;
 }
 
@@ -30,6 +30,11 @@
 .button-for-action {
   display: flex;
   margin-top: 30px;
+}
+
+/* FIX: Remove underline from link wrapper */
+.button-link {
+  text-decoration: none !important;
 }
 
 .hire-me-button,
@@ -43,13 +48,11 @@
   margin-top: 10px;
   border: none;
   font-size: 16px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #111827;
   font-weight: 600;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.25s ease, transform 0.15s ease,
-    box-shadow 0.25s ease;
+  transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
 }
 
 .hire-me-button:hover,
@@ -74,6 +77,10 @@
   display: flex;
   gap: 15px;
   align-items: center;
+}
+
+.social-links a {
+  text-decoration: none;
 }
 
 .social-icon {
