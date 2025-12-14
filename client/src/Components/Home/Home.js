@@ -95,7 +95,7 @@ const Home = () => {
           <div className="button-for-action">
             {/* later you can also switch this to scrollIntoView for contact */}
             <a href="#contactsection">
-              <div className="hire-me-button">Hire Me</div>
+              <div className="hire-me-button">Contact Me</div>
             </a>
             <div className="get-resume-button">
               <a href={MyCv} download="Harsh_Agarwal_Resume.pdf">

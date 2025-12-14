@@ -22,3 +22,18 @@ body,
   padding: 0;
   overflow-x: hidden;  /* keep vertical scroll */
 }
+
+/* Your existing styles above... */
+
+/* ==================== MOBILE FIX - ADD AT BOTTOM ==================== */
+/* Remove any conflicting body padding on mobile */
+@media (max-width: 999px) {
+  body {
+    padding-top: 0 !important;
+  }
+  
+  /* Add padding only to main content container */
+  #root > div {
+    padding-top: 60px;
+  }
+}

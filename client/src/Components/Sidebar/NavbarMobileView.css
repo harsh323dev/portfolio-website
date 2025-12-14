@@ -1,60 +1,282 @@
-.mobile-view-navbar{
-    position: sticky;
-    top: 0;
-    z-index: 1;
+/* Mobile navbar - only visible on small screens */
+.mobile-view-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999;
+  display: none;
+  background: transparent;
 }
 
-
-.navbar-header{
-    width: 100%;
-    background-color: brown;
-    color: white;
-    padding: 5px;
+.navbar-header {
+  width: 100%;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+  position: relative;
 }
 
-.navbar-header p svg{
-    margin-left: 10px;
-    cursor: pointer;
-    margin-top: 20px;
+.navbar-brand {
+  display: flex;
+  align-items: center;
 }
 
-
-.mobile-nav{
-    height: auto;
-    width: 210px;
-    background-color: brown;
-    margin-top: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.brand-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.mobile-nav ul li{
-    color: white;
-    list-style-type: none;
-    cursor: pointer;
-    text-decoration: none;
-    margin-top: 30px;
+.hamburger-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.mobile-nav ul li a{
-    text-decoration: none;
-    color: white;
-
-
+.hamburger-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
 }
 
-.nav-item-mobileview .active{
-    color: black;
-    background-color: #c2d611;
-    border-radius: 90px;
-    padding: 5px;
-    width: 100%;
+.hamburger-btn:active {
+  transform: scale(0.95);
 }
 
+/* Overlay */
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999998;
+  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(2px);
+}
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-@media (min-width:1000px) {
-    .mobile-view-navbar{
-        display: none;
-    }
+/* Sidebar menu */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100vh;
+  width: 280px;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  z-index: 999999;
+  transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mobile-nav-open {
+  left: 0;
+}
+
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.mobile-nav-header h3 {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Navigation list */
+.mobile-nav-list {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.nav-item-mobileview {
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-item-mobileview a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 20px;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item-mobileview a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, rgba(249, 115, 22, 0.15) 0%, transparent 100%);
+  transition: width 0.3s ease;
+}
+
+.nav-item-mobileview a:hover::before {
+  width: 100%;
+}
+
+.nav-item-mobileview a span {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-item-mobileview a:hover {
+  padding-left: 30px;
+  color: #f97316;
+}
+
+.nav-item-mobileview a.active {
+  background: linear-gradient(90deg, rgba(249, 115, 22, 0.2) 0%, transparent 100%);
+  border-left: 4px solid #f97316;
+  color: #f97316;
+  font-weight: 600;
+}
+
+/* Theme toggle */
+.nav-item-mobileview.theme-toggle {
+  border-bottom: none;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid rgba(249, 115, 22, 0.2);
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  gap: 15px;
+}
+
+.theme-label {
+  color: #e2e8f0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Scrollbar styling for mobile nav */
+.mobile-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mobile-nav::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.mobile-nav::-webkit-scrollbar-thumb {
+  background: #f97316;
+  border-radius: 3px;
+}
+
+.mobile-nav::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+/* Show only on mobile/tablet */
+@media (max-width: 999px) {
+  .mobile-view-navbar {
+    display: block !important;
+  }
+}
+
+/* Hide on desktop */
+@media (min-width: 1000px) {
+  .mobile-view-navbar {
+    display: none !important;
+  }
+  
+  .mobile-nav {
+    display: none !important;
+  }
+  
+  .mobile-nav-overlay {
+    display: none !important;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .navbar-header {
+    padding: 12px 16px;
+  }
+
+  .brand-text {
+    font-size: 1.2rem;
+  }
+
+  .hamburger-btn {
+    padding: 6px;
+  }
+
+  .mobile-nav {
+    width: 75vw;
+    max-width: 280px;
+  }
 }

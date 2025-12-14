@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./NavbarMobileView.css";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { IoMdClose } from "react-icons/io";
 import {
   FcNightPortrait,
   FcHome,
@@ -9,10 +10,7 @@ import {
   FcFactory,
   FcSalesPerformance,
 } from "react-icons/fc";
-
-import { MdBiotech } from "react-icons/md";
-
-import { MdCastForEducation } from "react-icons/md";
+import { MdBiotech, MdCastForEducation } from "react-icons/md";
 import { Link } from "react-scroll";
 import Switch from "react-switch";
 
@@ -23,119 +21,169 @@ const NavbarMobileView = ({ theme, changeTheme }) => {
     setOpen(!open);
   };
 
+  const closeMenu = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="mobile-view-navbar">
-      <div className="navbar-header">
-        <p>
-          <GiHamburgerMenu size={25} onClick={handleClick} />
-        </p>
+    <>
+      <div className="mobile-view-navbar">
+        <div className="navbar-header">
+          <div className="navbar-brand">
+            <span className="brand-text">Portfolio</span>
+          </div>
+          <button className="hamburger-btn" onClick={handleClick} aria-label="Toggle menu">
+            {open ? <IoMdClose size={30} /> : <GiHamburgerMenu size={30} />}
+          </button>
+        </div>
       </div>
 
-      {open ? (
-        <div className="mobile-nav">
-          <ul>
-            <li className="nav-item-mobileview">
-              <Link
-                to="home"
-                spy={true}
-                smooth={true}
-                duration={100}
-                offset={-100}
-              >
-                <FcHome size={25} /> Home
-              </Link>
-            </li>
+      {/* Overlay */}
+      {open && <div className="mobile-nav-overlay" onClick={closeMenu}></div>}
 
-            <li className="nav-item-mobileview">
-              <Link
-                to="about"
-                spy={true}
-                smooth={true}
-                duration={100}
-                offset={-100}
-              >
-                <FcNightPortrait size={25} /> About
-              </Link>
-            </li>
-            <li className="nav-item-mobileview">
-              <Link
-                to="workexperience"
-                spy={true}
-                smooth={true}
-                duration={100}
-                offset={-100}
-              >
-                <FcFactory size={25} /> Work Experience
-              </Link>
-            </li>
-            <li className="nav-item-mobileview">
-              <Link
-                to="techstack"
-                spy={true}
-                smooth={true}
-                duration={100}
-                offset={-100}
-              >
-                <MdBiotech size={25} color="orange" /> Tech Stack
-              </Link>
-            </li>
-            <li className="nav-item-mobileview">
-              <Link
-                to="education"
-                spy={true}
-                smooth={true}
-                duration={100}
-                offset={-100}
-              >
-                <MdCastForEducation size={25} color="yellow" /> Education
-              </Link>
-            </li>
-            <li className="nav-item-mobileview">
-              <Link
-                to="project"
-                spy={true}
-                smooth={true}
-                duration={100}
-                offset={-100}
-              >
-                <FcTodoList size={25} /> Projects
-              </Link>
-            </li>
-            <li className="nav-item-mobileview">
-              <Link
-                to="certifications"
-                spy={true}
-                smooth={true}
-                duration={100}
-                offset={-100}
-              >
-                <FcSalesPerformance size={25} /> Certifications
-              </Link>
-            </li>
-
-            <li className="nav-item-mobileview">
-              <Link
-                to="contactsection"
-                spy={true}
-                smooth={true}
-                duration={100}
-                offset={-100}
-              >
-                <FcContacts size={25} /> Contact
-              </Link>
-            </li>
-
-            <li className="nav-item-mobileview">
-
-              <Switch onChange={changeTheme} checked={theme==="light"}/>
-              
-            </li>
-
-
-          </ul>
+      {/* Sidebar Menu */}
+      <div className={`mobile-nav ${open ? "mobile-nav-open" : ""}`}>
+        <div className="mobile-nav-header">
+          <h3>Menu</h3>
+          <button className="close-btn" onClick={closeMenu} aria-label="Close menu">
+            <IoMdClose size={24} />
+          </button>
         </div>
-      ) : null}
-    </div>
+
+        <ul className="mobile-nav-list">
+          <li className="nav-item-mobileview">
+            <Link
+              to="home"
+              spy={true}
+              smooth={true}
+              duration={100}
+              offset={-80}
+              onClick={closeMenu}
+            >
+              <FcHome size={25} />
+              <span>Home</span>
+            </Link>
+          </li>
+
+          <li className="nav-item-mobileview">
+            <Link
+              to="about"
+              spy={true}
+              smooth={true}
+              duration={100}
+              offset={-80}
+              onClick={closeMenu}
+            >
+              <FcNightPortrait size={25} />
+              <span>About</span>
+            </Link>
+          </li>
+
+          <li className="nav-item-mobileview">
+            <Link
+              to="workexperience"
+              spy={true}
+              smooth={true}
+              duration={100}
+              offset={-80}
+              onClick={closeMenu}
+            >
+              <FcFactory size={25} />
+              <span>Work Experience</span>
+            </Link>
+          </li>
+
+          <li className="nav-item-mobileview">
+            <Link
+              to="techstack"
+              spy={true}
+              smooth={true}
+              duration={100}
+              offset={-80}
+              onClick={closeMenu}
+            >
+              <MdBiotech size={25} color="#f97316" />
+              <span>Tech Stack</span>
+            </Link>
+          </li>
+
+          <li className="nav-item-mobileview">
+            <Link
+              to="education"
+              spy={true}
+              smooth={true}
+              duration={100}
+              offset={-80}
+              onClick={closeMenu}
+            >
+              <MdCastForEducation size={25} color="#fbbf24" />
+              <span>Education</span>
+            </Link>
+          </li>
+
+          <li className="nav-item-mobileview">
+            <Link
+              to="project"
+              spy={true}
+              smooth={true}
+              duration={100}
+              offset={-80}
+              onClick={closeMenu}
+            >
+              <FcTodoList size={25} />
+              <span>Projects</span>
+            </Link>
+          </li>
+
+          <li className="nav-item-mobileview">
+            <Link
+              to="certifications"
+              spy={true}
+              smooth={true}
+              duration={100}
+              offset={-80}
+              onClick={closeMenu}
+            >
+              <FcSalesPerformance size={25} />
+              <span>Certifications</span>
+            </Link>
+          </li>
+
+          <li className="nav-item-mobileview">
+            <Link
+              to="contactsection"
+              spy={true}
+              smooth={true}
+              duration={100}
+              offset={-80}
+              onClick={closeMenu}
+            >
+              <FcContacts size={25} />
+              <span>Contact</span>
+            </Link>
+          </li>
+
+          <li className="nav-item-mobileview theme-toggle">
+            <div className="theme-switch-wrapper">
+              <span className="theme-label">
+                {theme === "light" ? "🌞 Light" : "🌙 Dark"}
+              </span>
+              <Switch
+                onChange={changeTheme}
+                checked={theme === "light"}
+                onColor="#f97316"
+                offColor="#1e293b"
+                checkedIcon={false}
+                uncheckedIcon={false}
+                height={24}
+                width={48}
+                handleDiameter={20}
+              />
+            </div>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 };
 
