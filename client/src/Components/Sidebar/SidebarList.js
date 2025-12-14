@@ -18,7 +18,7 @@ const scrollToSection = (id) => {
   const el = document.getElementById(id);
   console.log(`Scroll to ${id}:`, el);
   if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
   } else {
     console.log(`❌ Element with id="${id}" NOT FOUND`);
   }
@@ -36,7 +36,6 @@ const SidebarList = ({ expandSidebar }) => {
           <ul>
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("home")}
             >
               <FcHome size={25} /> Home
@@ -44,7 +43,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("about")}
             >
               <FcNightPortrait size={25} /> About
@@ -52,7 +50,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("workexperience")}
             >
               <FcFactory size={25} /> Work Experience
@@ -60,7 +57,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("techstack")}
             >
               <MdBiotech size={25} color="orange" /> Tech Stack
@@ -68,7 +64,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("education")}
             >
               <MdCastForEducation size={25} color="yellow" /> Education
@@ -76,7 +71,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("project")}
             >
               <FcTodoList size={25} /> Projects
@@ -84,7 +78,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("certifications")}
             >
               <FcSalesPerformance size={25} /> Certifications
@@ -92,7 +85,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("contactsection")}
             >
               <FcContacts size={25} /> Contact
@@ -104,7 +96,6 @@ const SidebarList = ({ expandSidebar }) => {
           <ul>
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("home")}
             >
               <FcHome size={25} />
@@ -112,7 +103,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("about")}
             >
               <FcNightPortrait size={25} />
@@ -120,7 +110,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("workexperience")}
             >
               <FcFactory size={25} />
@@ -128,7 +117,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("techstack")}
             >
               <MdBiotech size={25} color="orange" />
@@ -136,7 +124,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("education")}
             >
               <MdCastForEducation size={25} color="yellow" />
@@ -144,7 +131,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("project")}
             >
               <FcTodoList size={25} />
@@ -152,7 +138,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("certifications")}
             >
               <FcSalesPerformance size={25} />
@@ -160,7 +145,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li
               className="nav-item"
-              style={{ cursor: "pointer" }}
               onClick={() => scrollToSection("contactsection")}
             >
               <FcContacts size={25} />
