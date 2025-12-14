@@ -34,59 +34,35 @@ const SidebarList = ({ expandSidebar }) => {
           </div>
 
           <ul>
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("home")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("home")}>
               <FcHome size={25} /> Home
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("about")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("about")}>
               <FcNightPortrait size={25} /> About
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("workexperience")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("workexperience")}>
               <FcFactory size={25} /> Work Experience
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("techstack")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("techstack")}>
               <MdBiotech size={25} color="orange" /> Tech Stack
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("education")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("education")}>
               <MdCastForEducation size={25} color="yellow" /> Education
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("project")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("projects")}>
               <FcTodoList size={25} /> Projects
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("certifications")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("certifications")}>
               <FcSalesPerformance size={25} /> Certifications
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("contactsection")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("contactsection")}>
               <FcContacts size={25} /> Contact
             </li>
           </ul>
@@ -94,59 +70,35 @@ const SidebarList = ({ expandSidebar }) => {
       ) : (
         <div className="navbar-items-only-icons">
           <ul>
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("home")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("home")}>
               <FcHome size={25} />
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("about")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("about")}>
               <FcNightPortrait size={25} />
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("workexperience")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("workexperience")}>
               <FcFactory size={25} />
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("techstack")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("techstack")}>
               <MdBiotech size={25} color="orange" />
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("education")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("education")}>
               <MdCastForEducation size={25} color="yellow" />
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("project")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("projects")}>
               <FcTodoList size={25} />
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("certifications")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("certifications")}>
               <FcSalesPerformance size={25} />
             </li>
 
-            <li
-              className="nav-item"
-              onClick={() => scrollToSection("contactsection")}
-            >
+            <li className="nav-item" onClick={() => scrollToSection("contactsection")}>
               <FcContacts size={25} />
             </li>
           </ul>

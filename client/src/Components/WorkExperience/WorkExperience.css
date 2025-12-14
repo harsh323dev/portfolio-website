@@ -1,12 +1,9 @@
-/* src/Components/WorkExperience/WorkExperience.css */
-
+/* Work Experience Section - NO SCROLLBAR ISSUES */
 .workexperience-section {
-  margin-top: 70px;
-  padding: 80px 20px;
-  min-height: 100vh;
+  padding: 80px 30px;
   color: #f9fafb;
   position: relative;
-  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1e293b 50%, #0f172a 100%);
 }
 
 /* Section Title */
@@ -174,6 +171,7 @@
 /* Right Side: Glass Card */
 .experience-right {
   flex: 1;
+  min-width: 0;
 }
 
 .experience-glass-card {
@@ -231,6 +229,7 @@
 .header-content {
   flex: 1;
   z-index: 1;
+  min-width: 0;
 }
 
 .header-content h3 {
@@ -261,6 +260,7 @@
   color: white;
   white-space: nowrap;
   z-index: 1;
+  flex-shrink: 0;
 }
 
 /* Card Body */
