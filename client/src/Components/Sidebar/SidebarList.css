@@ -101,3 +101,11 @@
   height: 100%;
   pointer-events: all !important;
 }
+
+.sidebar-list {
+  position: fixed;
+  left: 0;
+  top: 0;
+  /* Make sure there's no orange border showing */
+  border-right: none; /* Remove this if it exists */
+}
