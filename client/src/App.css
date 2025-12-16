@@ -88,3 +88,59 @@
     margin-top: 10px;
   }
 }
+
+/* Scroll to Top Button Custom Styling */
+.scroll-to-top-btn {
+  width: 50px !important;
+  height: 50px !important;
+  background: linear-gradient(135deg, #f97316, #facc15) !important;
+  transition: all 0.3s ease !important;
+  z-index: 9999 !important;
+}
+
+.scroll-to-top-btn:hover {
+  background: linear-gradient(135deg, #facc15, #60a5fa) !important;
+  transform: translateY(-5px) scale(1.1) !important;
+  box-shadow: 0 12px 35px rgba(249, 115, 22, 0.8) !important;
+}
+
+.scroll-to-top-btn svg {
+  color: white !important;
+  font-size: 20px !important;
+}
+
+/* Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.scroll-to-top-btn:hover {
+  animation: bounce 0.6s ease infinite;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top-btn {
+  width: 50px !important;
+  height: 50px !important;
+  background: linear-gradient(135deg, #f97316, #facc15) !important;
+  transition: all 0.3s ease !important;
+  z-index: 99999 !important;
+  bottom: 30px !important;
+  right: 30px !important;
+}
+
+.scroll-to-top-btn:hover {
+  background: linear-gradient(135deg, #facc15, #60a5fa) !important;
+  transform: translateY(-5px) scale(1.15) !important;
+  box-shadow: 0 12px 35px rgba(249, 115, 22, 0.9) !important;
+}
+
+.scroll-to-top-btn svg {
+  color: white !important;
+  font-size: 22px !important;
+}
