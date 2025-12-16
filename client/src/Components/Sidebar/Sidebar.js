@@ -7,6 +7,7 @@ import TechStack from "../TechStack/TechStack";
 import Projects from "../Projects/Projects";
 import { BiCodeAlt, BiMenu } from "react-icons/bi";
 import SidebarList from "./SidebarList";
+import Education from "../Education/Education";
 
 const Sidebar = () => {
   const [expandSidebar, setExpandSidebar] = useState(true);
@@ -46,6 +47,9 @@ const Sidebar = () => {
         </div>
         <div id="projects">
           <Projects />
+        </div>
+        <div id = "education">
+          <Education />
         </div>
       </div>
     </div>
