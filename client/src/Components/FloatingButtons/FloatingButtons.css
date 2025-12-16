@@ -1,3 +1,4 @@
+/* Floating Buttons Container */
 .floating-buttons-container {
   position: fixed;
   bottom: 40px;
@@ -5,9 +6,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  z-index: 99999;
+  z-index: 999999;
 }
 
+/* Base Button Style */
 .float-btn {
   position: relative;
   width: 65px;
@@ -26,6 +28,7 @@
   text-decoration: none;
 }
 
+/* Animated Border Glow */
 .float-btn::before {
   content: '';
   position: absolute;
@@ -47,10 +50,12 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to { 
+    transform: rotate(360deg); 
+  }
 }
 
-/* Contact Button - Blue */
+/* Contact Button - Blue/Purple Gradient */
 .contact-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
@@ -59,7 +64,7 @@
   box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6);
 }
 
-/* Resume Button - Orange */
+/* Resume Button - Pink Gradient */
 .resume-btn {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
@@ -68,17 +73,27 @@
   box-shadow: 0 12px 40px rgba(245, 87, 108, 0.6);
 }
 
-/* Scroll Top Button - Purple/Pink */
+/* Scroll Top Button - Purple/Pink Gradient with Pulse */
 .scroll-top-btn {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 .scroll-top-btn:hover {
   box-shadow: 0 12px 40px rgba(139, 92, 246, 0.7);
+  animation: none;
 }
 
-/* Label on Hover */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.8);
+  }
+}
+
+/* Tooltip Label */
 .btn-label {
   position: absolute;
   right: 80px;
@@ -96,6 +111,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Tooltip Arrow */
 .btn-label::after {
   content: '';
   position: absolute;
@@ -109,26 +125,13 @@
   border-bottom: 6px solid transparent;
 }
 
+/* Show Tooltip on Hover */
 .float-btn:hover .btn-label {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Pulse Animation */
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 20px rgba(139, 92, 246, 0);
-  }
-}
-
-.scroll-top-btn {
-  animation: pulse 2s infinite;
-}
-
-/* Mobile */
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .floating-buttons-container {
     bottom: 20px;
@@ -147,4 +150,20 @@
     padding: 8px 16px;
     font-size: 12px;
   }
+}
+
+/* FORCE HIGHER Z-INDEX */
+.floating-buttons-container {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 999999 !important; /* ✅ Force highest z-index */
+}
+
+.scroll-top-btn {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  animation: pulse-glow 2s ease-in-out infinite !important;
 }

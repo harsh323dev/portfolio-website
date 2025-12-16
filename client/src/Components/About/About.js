@@ -5,20 +5,26 @@ import { motion } from "framer-motion";
 const About = () => {
   const canvasRef = useRef(null);
   const [terminalText, setTerminalText] = useState([]);
+  const [terminalStarted, setTerminalStarted] = useState(false);
+  const hasAnimated = useRef(false);
 
-  // Terminal typing animation
-  useEffect(() => {
+  // Start terminal animation on click
+  const startTerminal = () => {
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
+    setTerminalStarted(true);
+
     const commands = [
       { text: "$ whoami", delay: 0 },
-      { text: "> harsh_agarwal", delay: 800 },
-      { text: "$ cat skills.txt", delay: 1600 },
-      { text: "> Backend Developer", delay: 2400 },
-      { text: "> Full Stack Engineer", delay: 2800 },
-      { text: "> Problem Solver", delay: 3200 },
-      { text: "$ echo $PASSION", delay: 4000 },
-      { text: "> Building scalable solutions", delay: 4800 },
-      { text: "$ status", delay: 5800 },
-      { text: "> Ready to innovate 🚀", delay: 6600 },
+      { text: "> harsh_agarwal", delay: 600 },
+      { text: "$ cat skills.txt", delay: 1400 },
+      { text: "> Backend Developer", delay: 2000 },
+      { text: "> Full Stack Engineer", delay: 2400 },
+      { text: "> Problem Solver", delay: 2800 },
+      { text: "$ echo $PASSION", delay: 3600 },
+      { text: "> Building scalable solutions", delay: 4200 },
+      { text: "$ status", delay: 5000 },
+      { text: "> Ready to innovate 🚀", delay: 5600 },
     ];
 
     commands.forEach((cmd) => {
@@ -26,7 +32,7 @@ const About = () => {
         setTerminalText((prev) => [...prev, cmd.text]);
       }, cmd.delay);
     });
-  }, []);
+  };
 
   // Particle animation (LEFT SIDE)
   useEffect(() => {
@@ -118,7 +124,6 @@ const About = () => {
     "while(learning) {",
     "  grow();",
     "}",
-    "const future = await build();",
   ];
 
   return (
@@ -165,6 +170,8 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            onClick={startTerminal}
+            style={{ cursor: terminalStarted ? 'default' : 'pointer' }}
           >
             {/* Terminal Header */}
             <div className="terminal-header">
@@ -178,9 +185,16 @@ const About = () => {
 
             {/* Terminal Body */}
             <div className="terminal-body">
-              {terminalText.map((line, index) => (
+              {!terminalStarted && (
+                <div className="terminal-prompt">
+                  <span className="prompt-text">Click to start terminal...</span>
+                  <div className="terminal-cursor-blink">_</div>
+                </div>
+              )}
+              
+              {terminalStarted && terminalText.map((line, index) => (
                 <motion.div
-                  key={index}
+                  key={`terminal-${index}`}
                   className={line.startsWith("$") ? "terminal-command" : "terminal-output"}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -189,7 +203,8 @@ const About = () => {
                   {line}
                 </motion.div>
               ))}
-              <div className="terminal-cursor">_</div>
+              
+              {terminalStarted && <div className="terminal-cursor">_</div>}
             </div>
 
             {/* Stats */}
@@ -223,13 +238,13 @@ const About = () => {
                 I'm a <strong>backend-focused full-stack developer</strong> with 1.5+ years of experience building production-grade applications using <strong>Java, Spring Boot, Node.js</strong>, and modern JavaScript frameworks.
               </p>
               <p>
-                Currently working as a <strong>Software Engineer</strong>, where I contribute to scalable, maintainable backend services and APIs that power enterprise solutions.
+                Currently working as a <strong>Software Engineer at TCS</strong>, contributing to scalable backend services and APIs that power enterprise solutions.
               </p>
               <p>
-                I've built projects like <strong>job-ready portals, RFP management tools, and analytics dashboards</strong>, focusing on clean architecture, database design, and real-world performance optimization.
+                I've built <strong>job portals, RFP management tools, and analytics dashboards</strong>, focusing on clean architecture and real-world performance optimization.
               </p>
               <p>
-                Beyond backend engineering, I'm actively exploring <strong>cybersecurity, blockchain/Web3</strong>, and continuously experimenting with new technologies to stay sharp and keep evolving.
+                Beyond backend, I'm actively exploring <strong>cybersecurity, blockchain/Web3</strong>, and continuously experimenting with new technologies.
               </p>
             </div>
 

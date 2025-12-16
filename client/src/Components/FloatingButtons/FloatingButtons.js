@@ -4,15 +4,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './FloatingButtons.css';
 import MyCv from '../Home/cv.pdf';
 
+
+
 const FloatingButtons = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 200);
+      // ✅ Changed from 400 to 150px
+      setShowScrollTop(window.scrollY > 150);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check immediately on mount
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -51,7 +56,7 @@ const FloatingButtons = () => {
         <span className="btn-label">Resume</span>
       </motion.a>
 
-      {/* Scroll to Top - ONLY SHOWS WHEN SCROLLED */}
+      {/* Scroll to Top - SHOWS AFTER 150PX SCROLL */}
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
@@ -63,6 +68,7 @@ const FloatingButtons = () => {
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             whileHover={{ scale: 1.15, rotate: 360 }}
             whileTap={{ scale: 0.9 }}
+            aria-label="Scroll to top"
           >
             <FaArrowUp />
             <span className="btn-label">Top</span>
@@ -72,5 +78,7 @@ const FloatingButtons = () => {
     </div>
   );
 };
+
+
 
 export default FloatingButtons;
