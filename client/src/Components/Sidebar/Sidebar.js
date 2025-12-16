@@ -33,7 +33,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Hamburger Menu Button */}
       <motion.button
         className="hamburger-btn"
         onClick={() => setIsOpen(!isOpen)}
@@ -43,11 +42,9 @@ const Sidebar = () => {
         {isOpen ? <FaTimes /> : <FaBars />}
       </motion.button>
 
-      {/* Sidebar */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Overlay */}
             <motion.div
               className="sidebar-overlay"
               initial={{ opacity: 0 }}
@@ -56,7 +53,6 @@ const Sidebar = () => {
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Sidebar Content */}
             <motion.aside
               className="modern-sidebar"
               initial={{ x: -300, opacity: 0 }}
@@ -64,7 +60,6 @@ const Sidebar = () => {
               exit={{ x: -300, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
-              {/* Profile Section */}
               <div className="sidebar-profile">
                 <div className="profile-img-wrapper">
                   <img src={profileImg} alt="Harsh Agarwal" />
@@ -74,7 +69,6 @@ const Sidebar = () => {
                 <p className="profile-title">Full Stack Developer</p>
               </div>
 
-              {/* Navigation */}
               <nav className="sidebar-nav">
                 {navItems.map((item, index) => (
                   <motion.a
@@ -104,7 +98,6 @@ const Sidebar = () => {
                 ))}
               </nav>
 
-              {/* Footer */}
               <div className="sidebar-footer">
                 <p>© 2025 Harsh Agarwal</p>
               </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
 import { FaLinkedin, FaGithub, FaInstagram, FaDiscord, FaEnvelope, FaArrowUp, FaFileDownload } from "react-icons/fa";
 import { SiLeetcode, SiCodechef, SiHackerrank, SiCodeforces, SiGeeksforgeeks, SiHackerearth, SiCodingninjas } from "react-icons/si";
@@ -7,6 +7,7 @@ import "./Home.css";
 
 const Home = () => {
   const canvasRef = useRef(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const SOCIAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/harsh323",
@@ -26,10 +27,50 @@ const Home = () => {
     codingninjas: "https://www.naukri.com/code360/profile/HarshakaOmega",
   };
 
+  // Scroll to Top Handler
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      console.log('Scroll Position:', scrollPosition); // DEBUG
+      
+      if (scrollPosition > 300) {
+        setShowScrollTop(true);
+        console.log('Show Scroll Button: TRUE'); // DEBUG
+      } else {
+        setShowScrollTop(false);
+        console.log('Show Scroll Button: FALSE'); // DEBUG
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    // Check initial scroll position
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log('Scroll to Top Clicked!'); // DEBUG
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
+  const downloadCV = () => {
+    console.log('Download CV Clicked!'); // DEBUG
+    const link = document.createElement('a');
+    link.href = process.env.PUBLIC_URL + '/cv.pdf';
+    link.download = 'Harsh_Agarwal_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Particle Animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -121,15 +162,29 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Floating Buttons - Only CV and Scroll to Top */}
+      {/* Floating Action Buttons */}
       <div className="floating-buttons">
-        <a href="/cv.pdf" download className="fab-button fab-resume">
+        {/* Download Resume - Always Visible */}
+        <button 
+          onClick={downloadCV} 
+          className="fab-button fab-resume" 
+          title="Download Resume"
+          aria-label="Download Resume"
+        >
           <FaFileDownload className="fab-icon" />
-        </a>
-
-        <button onClick={scrollToTop} className="fab-button fab-scroll-top">
-          <FaArrowUp className="fab-icon" />
         </button>
+
+        {/* Scroll to Top - Conditional */}
+        {showScrollTop && (
+          <button 
+            onClick={scrollToTop} 
+            className="fab-button fab-scroll-top" 
+            title="Scroll to Top"
+            aria-label="Scroll to Top"
+          >
+            <FaArrowUp className="fab-icon" />
+          </button>
+        )}
       </div>
 
       <div className="home-content">
