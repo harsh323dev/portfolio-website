@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./About.css";
 import { motion } from "framer-motion";
+import { 
+  FaServer, 
+  FaProjectDiagram, 
+  FaCode, 
+  FaDatabase, 
+  FaCloud, 
+  FaEthereum 
+} from "react-icons/fa";
 
 const About = () => {
   const canvasRef = useRef(null);
@@ -8,7 +16,6 @@ const About = () => {
   const [terminalStarted, setTerminalStarted] = useState(false);
   const hasAnimated = useRef(false);
 
-  // Start terminal animation on click
   const startTerminal = () => {
     if (hasAnimated.current) return;
     hasAnimated.current = true;
@@ -34,7 +41,6 @@ const About = () => {
     });
   };
 
-  // Particle animation (LEFT SIDE)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -126,11 +132,19 @@ const About = () => {
     "}",
   ];
 
+  const skillsData = [
+    { name: "Backend Architecture", icon: <FaServer /> },
+    { name: "System Design", icon: <FaProjectDiagram /> },
+    { name: "API Development", icon: <FaCode /> },
+    { name: "Database Design", icon: <FaDatabase /> },
+    { name: "Cloud Services", icon: <FaCloud /> },
+    { name: "Web3", icon: <FaEthereum /> },
+  ];
+
   return (
     <section className="about-wrapper" id="about" style={{ scrollMarginTop: "120px" }}>
       <canvas ref={canvasRef} className="about-particle-canvas"></canvas>
 
-      {/* Code Rain - LEFT SIDE */}
       <div className="about-code-rain">
         {codeSnippets.map((code, index) => (
           <div
@@ -148,7 +162,6 @@ const About = () => {
       </div>
 
       <div className="about-container">
-        {/* Section Header */}
         <motion.div
           className="about-header"
           initial={{ opacity: 0, y: -30 }}
@@ -162,7 +175,6 @@ const About = () => {
           <div className="title-underline"></div>
         </motion.div>
 
-        {/* Terminal Card & Bio */}
         <div className="about-content">
           <motion.div
             className="terminal-card"
@@ -173,7 +185,6 @@ const About = () => {
             onClick={startTerminal}
             style={{ cursor: terminalStarted ? 'default' : 'pointer' }}
           >
-            {/* Terminal Header */}
             <div className="terminal-header">
               <div className="terminal-buttons">
                 <span className="btn-close"></span>
@@ -183,7 +194,6 @@ const About = () => {
               <div className="terminal-title">harsh@developer:~$</div>
             </div>
 
-            {/* Terminal Body */}
             <div className="terminal-body">
               {!terminalStarted && (
                 <div className="terminal-prompt">
@@ -207,7 +217,6 @@ const About = () => {
               {terminalStarted && <div className="terminal-cursor">_</div>}
             </div>
 
-            {/* Stats */}
             <div className="terminal-stats">
               <div className="stat-item">
                 <span className="stat-value">1.5+</span>
@@ -248,14 +257,22 @@ const About = () => {
               </p>
             </div>
 
-            {/* Skill Highlights */}
+            {/* Skill Highlights with Icons */}
             <div className="skill-highlights">
-              <div className="skill-tag">Backend Architecture</div>
-              <div className="skill-tag">System Design</div>
-              <div className="skill-tag">API Development</div>
-              <div className="skill-tag">Database Design</div>
-              <div className="skill-tag">Cloud Services</div>
-              <div className="skill-tag">Web3</div>
+              {skillsData.map((skill, index) => (
+                <motion.div
+                  key={index}
+                  className="skill-tag"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <span className="skill-icon">{skill.icon}</span>
+                  <span>{skill.name}</span>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>

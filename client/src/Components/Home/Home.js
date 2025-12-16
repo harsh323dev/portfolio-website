@@ -1,20 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import "./Home.css";
+import React, { useEffect, useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
-import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaInstagram, FaDiscord, FaCode } from "react-icons/fa";
-import { 
-  SiGmail, 
-  SiLeetcode, 
-  SiCodechef, 
-  SiHackerrank, 
-  SiCodeforces, 
-  SiGeeksforgeeks,
-  SiHackerearth
-} from "react-icons/si";
+import { FaLinkedin, FaGithub, FaInstagram, FaDiscord, FaEnvelope, FaArrowUp, FaFileDownload } from "react-icons/fa";
+import { SiLeetcode, SiCodechef, SiHackerrank, SiCodeforces, SiGeeksforgeeks, SiHackerearth, SiCodingninjas } from "react-icons/si";
+import { BsMessenger } from "react-icons/bs";
+import "./Home.css";
 
 const Home = () => {
   const canvasRef = useRef(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const SOCIAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/harsh323",
@@ -34,20 +27,17 @@ const Home = () => {
     codingninjas: "https://www.naukri.com/code360/profile/HarshakaOmega",
   };
 
-  const codeSnippets = [
-    "const magic = () => '✨';",
-    "while(alive) { code(); }",
-    "return success || retry();",
-    "if(dreams) { achieve(); }",
-    "function build() { ship(); }",
-    "git commit -m 'life'",
-    "npm run happiness",
-    "await greatness();",
-    "throw new Ideas();",
-    "console.log('🚀');",
-    "import passion from 'life';",
-    "export default dreams;",
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -58,7 +48,7 @@ const Home = () => {
     canvas.height = window.innerHeight;
 
     const particles = [];
-    const particleCount = 80;
+    const particleCount = 100;
 
     class Particle {
       constructor() {
@@ -67,13 +57,11 @@ const Home = () => {
         this.size = Math.random() * 2 + 1;
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
-        this.opacity = Math.random() * 0.5 + 0.2;
       }
 
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
         if (this.x > canvas.width) this.x = 0;
         if (this.x < 0) this.x = canvas.width;
         if (this.y > canvas.height) this.y = 0;
@@ -81,7 +69,7 @@ const Home = () => {
       }
 
       draw() {
-        ctx.fillStyle = `rgba(249, 115, 22, ${this.opacity})`;
+        ctx.fillStyle = "rgba(249, 115, 22, 0.5)";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -94,29 +82,10 @@ const Home = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
       particles.forEach((particle) => {
         particle.update();
         particle.draw();
       });
-
-      particles.forEach((a, i) => {
-        particles.slice(i + 1).forEach((b) => {
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 120) {
-            ctx.strokeStyle = `rgba(249, 115, 22, ${0.15 * (1 - distance / 120)})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        });
-      });
-
       requestAnimationFrame(animate);
     };
 
@@ -131,8 +100,18 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const codeSnippets = [
+    "const developer = 'Harsh';",
+    "function buildDreams() { }",
+    "while(true) { learn(); }",
+    "if(passion) { achieve(); }",
+    "class Developer { }",
+    "return success;",
+    "export default dreams;",
+  ];
+
   return (
-    <div className="home-container" id="home" style={{ scrollMarginTop: "120px" }}>
+    <section className="home-container" id="home">
       <canvas ref={canvasRef} className="particle-canvas"></canvas>
 
       <div className="code-rain">
@@ -141,9 +120,9 @@ const Home = () => {
             key={index}
             className="code-snippet"
             style={{
-              left: `${Math.random() * 90}%`,
-              animationDelay: `${Math.random() * 15}s`,
-              animationDuration: `${15 + Math.random() * 10}s`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${10 + Math.random() * 5}s`,
             }}
           >
             {code}
@@ -151,212 +130,123 @@ const Home = () => {
         ))}
       </div>
 
+      {/* Floating Action Buttons */}
+      <div className="floating-buttons">
+        <a href="#contact" className="fab-button fab-contact" title="Contact Me">
+          <FaEnvelope className="fab-icon" />
+        </a>
+
+        <a href="/cv.pdf" download className="fab-button fab-resume" title="Download Resume">
+          <FaFileDownload className="fab-icon" />
+        </a>
+
+        {showScrollTop && (
+          <button onClick={scrollToTop} className="fab-button fab-scroll-top" title="Scroll to Top">
+            <FaArrowUp className="fab-icon" />
+          </button>
+        )}
+      </div>
+
       <div className="home-content">
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="glitch-wrapper">
-            <h1 className="glitch" data-text="Hi, I'm Harsh Agarwal">
-              Hi, I'm Harsh Agarwal
-            </h1>
-          </div>
+        <div className="glitch-wrapper">
+          <h1 className="glitch" data-text="Hi, I'm Harsh Agarwal">
+            Hi, I'm Harsh Agarwal
+          </h1>
+        </div>
 
-          <div className="typewriter-container">
-            <Typewriter
-              options={{
-                strings: [
-                  "Backend Developer 🚀",
-                  "Full Stack Developer 💻",
-                  "Java & Spring Boot Developer ☕",
-                  "Node.js Developer ⚡",
-                  "Tech Enthusiast 🔥",
-                  "Blockchain & Web3 Learner 🌐",
-                ],
-                autoStart: true,
-                loop: true,
-                delay: 80,
-                deleteSpeed: 50,
-              }}
-            />
-          </div>
-        </motion.div>
+        <div className="typewriter-container">
+          <Typewriter
+            options={{
+              strings: [
+                "Java Developer",
+                "Spring Boot Expert",
+                "Full Stack Engineer",
+                "Problem Solver",
+              ],
+              autoStart: true,
+              loop: true,
+              delay: 80,
+              deleteSpeed: 50,
+            }}
+          />
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <div className="stats-grid">
-            <div className="stat-card">
-              <div className="stat-number">1.5+</div>
-              <div className="stat-label">Years Experience</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">10+</div>
-              <div className="stat-label">Projects Built</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">100+</div>
-              <div className="stat-label">Problems Solved</div>
-            </div>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <div className="stat-number">1.5+</div>
+            <div className="stat-label">YEARS EXPERIENCE</div>
           </div>
-        </motion.div>
+          <div className="stat-card">
+            <div className="stat-number">10+</div>
+            <div className="stat-label">PROJECTS BUILT</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-number">100+</div>
+            <div className="stat-label">PROBLEMS SOLVED</div>
+          </div>
+        </div>
 
-        {/* Social Links Section */}
-        <motion.div
-          className="links-section"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <h3 className="links-heading">
-            <span className="heading-icon">💬</span> Connect With Me
+        <div className="links-section">
+          <h3 className="section-heading">
+            <BsMessenger className="heading-icon" />
+            CONNECT WITH ME
           </h3>
           <div className="social-links">
-            <a 
-              href={SOCIAL_LINKS.linkedin} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="social-icon linkedin" 
-              aria-label="LinkedIn"
-            >
+            <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon linkedin">
               <FaLinkedin />
-              <span className="icon-tooltip">LinkedIn</span>
             </a>
-            <a 
-              href={SOCIAL_LINKS.github} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="social-icon github" 
-              aria-label="GitHub"
-            >
+            <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="social-icon github">
               <FaGithub />
-              <span className="icon-tooltip">GitHub</span>
             </a>
-            <a 
-              href={SOCIAL_LINKS.instagram} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="social-icon instagram" 
-              aria-label="Instagram"
-            >
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="social-icon instagram">
               <FaInstagram />
-              <span className="icon-tooltip">Instagram</span>
             </a>
-            <a 
-              href={SOCIAL_LINKS.gmail} 
-              className="social-icon gmail" 
-              aria-label="Gmail"
-            >
-              <SiGmail />
-              <span className="icon-tooltip">Gmail</span>
+            <a href={SOCIAL_LINKS.gmail} className="social-icon gmail">
+              <FaEnvelope />
             </a>
-            <a 
-              href={SOCIAL_LINKS.discord} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="social-icon discord" 
-              aria-label="Discord"
-            >
+            <a href={SOCIAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="social-icon discord">
               <FaDiscord />
-              <span className="icon-tooltip">Discord</span>
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Coding Profiles Section */}
-        <motion.div
-          className="links-section coding-section"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-        >
-          <h3 className="links-heading">
-            <span className="heading-icon">👨‍💻</span> Coding Profiles
+        <div className="coding-section">
+          <h3 className="section-heading">
+            <SiLeetcode className="heading-icon" />
+            CODING PROFILES
           </h3>
           <div className="coding-links">
-            <a 
-              href={CODING_PROFILES.leetcode} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="coding-icon leetcode" 
-              aria-label="LeetCode"
-            >
+            <a href={CODING_PROFILES.leetcode} target="_blank" rel="noopener noreferrer" className="coding-icon leetcode">
               <SiLeetcode />
-              <span className="icon-tooltip">LeetCode</span>
             </a>
-            <a 
-              href={CODING_PROFILES.codechef} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="coding-icon codechef" 
-              aria-label="CodeChef"
-            >
+            <a href={CODING_PROFILES.codechef} target="_blank" rel="noopener noreferrer" className="coding-icon codechef">
               <SiCodechef />
-              <span className="icon-tooltip">CodeChef</span>
             </a>
-            <a 
-              href={CODING_PROFILES.hackerrank} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="coding-icon hackerrank" 
-              aria-label="HackerRank"
-            >
+            <a href={CODING_PROFILES.hackerrank} target="_blank" rel="noopener noreferrer" className="coding-icon hackerrank">
               <SiHackerrank />
-              <span className="icon-tooltip">HackerRank</span>
             </a>
-            <a 
-              href={CODING_PROFILES.codeforces} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="coding-icon codeforces" 
-              aria-label="Codeforces"
-            >
+            <a href={CODING_PROFILES.codeforces} target="_blank" rel="noopener noreferrer" className="coding-icon codeforces">
               <SiCodeforces />
-              <span className="icon-tooltip">Codeforces</span>
             </a>
-            <a 
-              href={CODING_PROFILES.geeksforgeeks} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="coding-icon geeksforgeeks" 
-              aria-label="GeeksforGeeks"
-            >
+            <a href={CODING_PROFILES.geeksforgeeks} target="_blank" rel="noopener noreferrer" className="coding-icon geeksforgeeks">
               <SiGeeksforgeeks />
-              <span className="icon-tooltip">GeeksforGeeks</span>
             </a>
-            <a 
-              href={CODING_PROFILES.hackerearth} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="coding-icon hackerearth" 
-              aria-label="HackerEarth"
-            >
+            <a href={CODING_PROFILES.hackerearth} target="_blank" rel="noopener noreferrer" className="coding-icon hackerearth">
               <SiHackerearth />
-              <span className="icon-tooltip">HackerEarth</span>
             </a>
-            <a 
-              href={CODING_PROFILES.codingninjas} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="coding-icon codingninjas" 
-              aria-label="Coding Ninjas"
-            >
-              <FaCode />
-              <span className="icon-tooltip">Coding Ninjas</span>
+            <a href={CODING_PROFILES.codingninjas} target="_blank" rel="noopener noreferrer" className="coding-icon codingninjas">
+              <SiCodingninjas />
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Scroll Indicator - LEFT SIDE */}
+      {/* Scroll Indicator - LEFT BOTTOM */}
       <div className="scroll-indicator">
         <div className="mouse"></div>
-        <p>Scroll Down</p>
+        <p>Scroll</p>
       </div>
-    </div>
+    </section>
   );
 };
 
