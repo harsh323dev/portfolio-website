@@ -173,42 +173,182 @@
   margin-top: 5px;
 }
 
+/* Links Section Container */
+.links-section {
+  margin: 35px 0;
+}
+
+.links-heading {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.heading-icon {
+  font-size: 1.3rem;
+}
+
 /* Social Links */
 .social-links {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin: 30px 0;
+  flex-wrap: wrap;
 }
 
 .social-icon {
-  font-size: 32px;
+  position: relative;
+  font-size: 36px;
   color: #e5e7eb;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 12px;
+  border: 2px solid transparent;
 }
 
 .social-icon:hover {
   transform: translateY(-5px) scale(1.1);
+  border-color: rgba(249, 115, 22, 0.3);
 }
 
 .social-icon.linkedin:hover {
   color: #0a66c2;
+  background: rgba(10, 102, 194, 0.1);
 }
 
 .social-icon.github:hover {
   color: #f9fafb;
+  background: rgba(249, 250, 251, 0.1);
 }
 
 .social-icon.instagram:hover {
   color: #e1306c;
+  background: rgba(225, 48, 108, 0.1);
 }
 
 .social-icon.gmail:hover {
   color: #ea4335;
+  background: rgba(234, 67, 53, 0.1);
 }
 
 .social-icon.discord:hover {
   color: #5865f2;
+  background: rgba(88, 101, 242, 0.1);
+}
+
+/* Coding Profiles Section */
+.coding-section {
+  margin-top: 45px;
+  padding-top: 35px;
+  border-top: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.coding-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.coding-icon {
+  position: relative;
+  font-size: 40px;
+  color: #e5e7eb;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 14px;
+  border: 2px solid rgba(96, 165, 250, 0.2);
+}
+
+.coding-icon:hover {
+  transform: translateY(-8px) scale(1.15);
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+}
+
+.coding-icon.leetcode:hover {
+  color: #ffa116;
+  background: rgba(255, 161, 22, 0.15);
+  border-color: #ffa116;
+}
+
+.coding-icon.codechef:hover {
+  color: #5b4638;
+  background: rgba(91, 70, 56, 0.15);
+  border-color: #5b4638;
+}
+
+.coding-icon.hackerrank:hover {
+  color: #00ea64;
+  background: rgba(0, 234, 100, 0.15);
+  border-color: #00ea64;
+}
+
+.coding-icon.codeforces:hover {
+  color: #1f8acb;
+  background: rgba(31, 138, 203, 0.15);
+  border-color: #1f8acb;
+}
+
+.coding-icon.geeksforgeeks:hover {
+  color: #2f8d46;
+  background: rgba(47, 141, 70, 0.15);
+  border-color: #2f8d46;
+}
+
+.coding-icon.hackerearth:hover {
+  color: #323754;
+  background: rgba(50, 55, 84, 0.15);
+  border-color: #323754;
+}
+
+.coding-icon.codingninjas:hover {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.15);
+  border-color: #f97316;
+}
+
+/* Tooltip */
+.icon-tooltip {
+  position: absolute;
+  bottom: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.98);
+  color: #f9fafb;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.social-icon:hover .icon-tooltip,
+.coding-icon:hover .icon-tooltip {
+  opacity: 1;
+  bottom: -44px;
 }
 
 /* CTA Buttons */
@@ -216,7 +356,7 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 40px;
+  margin-top: 50px;
   flex-wrap: wrap;
 }
 
@@ -350,12 +490,40 @@
     font-size: 2rem;
   }
 
+  .links-heading {
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+  }
+
+  .social-links {
+    gap: 15px;
+  }
+
+  .social-icon {
+    font-size: 30px;
+    padding: 8px;
+  }
+
+  .coding-links {
+    gap: 15px;
+  }
+
+  .coding-icon {
+    font-size: 34px;
+    padding: 12px;
+  }
+
+  .icon-tooltip {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
 
   .cta-btn {
-    width: 200px;
+    width: 220px;
   }
 }
