@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Typewriter from "typewriter-effect";
 import { FaLinkedin, FaGithub, FaInstagram, FaDiscord, FaEnvelope, FaArrowUp, FaFileDownload } from "react-icons/fa";
 import { SiLeetcode, SiCodechef, SiHackerrank, SiCodeforces, SiGeeksforgeeks, SiHackerearth, SiCodingninjas } from "react-icons/si";
@@ -7,7 +7,6 @@ import "./Home.css";
 
 const Home = () => {
   const canvasRef = useRef(null);
-  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const SOCIAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/harsh323",
@@ -26,14 +25,6 @@ const Home = () => {
     hackerearth: "https://www.hackerearth.com/@harsh323dev",
     codingninjas: "https://www.naukri.com/code360/profile/HarshakaOmega",
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -130,21 +121,15 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Floating Action Buttons */}
+      {/* Floating Buttons - Only CV and Scroll to Top */}
       <div className="floating-buttons">
-        <a href="#contact" className="fab-button fab-contact" title="Contact Me">
-          <FaEnvelope className="fab-icon" />
-        </a>
-
-        <a href="/cv.pdf" download className="fab-button fab-resume" title="Download Resume">
+        <a href="/cv.pdf" download className="fab-button fab-resume">
           <FaFileDownload className="fab-icon" />
         </a>
 
-        {showScrollTop && (
-          <button onClick={scrollToTop} className="fab-button fab-scroll-top" title="Scroll to Top">
-            <FaArrowUp className="fab-icon" />
-          </button>
-        )}
+        <button onClick={scrollToTop} className="fab-button fab-scroll-top">
+          <FaArrowUp className="fab-icon" />
+        </button>
       </div>
 
       <div className="home-content">
@@ -241,7 +226,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator - LEFT BOTTOM */}
       <div className="scroll-indicator">
         <div className="mouse"></div>
         <p>Scroll</p>

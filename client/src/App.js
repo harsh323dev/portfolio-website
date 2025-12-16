@@ -8,7 +8,6 @@ import WorkExperience from './Components/WorkExperience/WorkExperience';
 import Education from './Components/Education/Education';
 import Projects from './Components/Projects/Projects';
 
-
 function App() {
   return (
     <div className="App">
@@ -19,9 +18,6 @@ function App() {
       <WorkExperience />
       <Education />
       <Projects />
-      
-      {/* Scroll to Top Button */}
-
     </div>
   );
 }

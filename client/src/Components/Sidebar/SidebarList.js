@@ -6,7 +6,6 @@ import {
   FcNightPortrait,
   FcHome,
   FcTodoList,
-  FcContacts,
   FcFactory,
   FcSalesPerformance,
 } from "react-icons/fc";
@@ -42,15 +41,13 @@ const SidebarList = ({ expandSidebar }) => {
               <FcNightPortrait size={25} /> About
             </li>
 
-                        <li className="nav-item" onClick={() => scrollToSection("techstack")}>
+            <li className="nav-item" onClick={() => scrollToSection("techstack")}>
               <MdBiotech size={25} color="orange" /> Tech Stack
             </li>
 
             <li className="nav-item" onClick={() => scrollToSection("workexperience")}>
               <FcFactory size={25} /> Work Experience
             </li>
-
-
 
             <li className="nav-item" onClick={() => scrollToSection("education")}>
               <MdCastForEducation size={25} color="yellow" /> Education
@@ -62,10 +59,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li className="nav-item" onClick={() => scrollToSection("certifications")}>
               <FcSalesPerformance size={25} /> Certifications
-            </li>
-
-            <li className="nav-item" onClick={() => scrollToSection("contactsection")}>
-              <FcContacts size={25} /> Contact
             </li>
           </ul>
         </div>
@@ -80,12 +73,12 @@ const SidebarList = ({ expandSidebar }) => {
               <FcNightPortrait size={25} />
             </li>
 
-            <li className="nav-item" onClick={() => scrollToSection("workexperience")}>
-              <FcFactory size={25} />
-            </li>
-
             <li className="nav-item" onClick={() => scrollToSection("techstack")}>
               <MdBiotech size={25} color="orange" />
+            </li>
+
+            <li className="nav-item" onClick={() => scrollToSection("workexperience")}>
+              <FcFactory size={25} />
             </li>
 
             <li className="nav-item" onClick={() => scrollToSection("education")}>
@@ -98,10 +91,6 @@ const SidebarList = ({ expandSidebar }) => {
 
             <li className="nav-item" onClick={() => scrollToSection("certifications")}>
               <FcSalesPerformance size={25} />
-            </li>
-
-            <li className="nav-item" onClick={() => scrollToSection("contactsection")}>
-              <FcContacts size={25} />
             </li>
           </ul>
         </div>
