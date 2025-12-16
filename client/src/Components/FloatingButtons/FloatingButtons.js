@@ -9,7 +9,7 @@ const FloatingButtons = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
+      setShowScrollTop(window.scrollY > 200);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
