@@ -42,13 +42,15 @@ const SidebarList = ({ expandSidebar }) => {
               <FcNightPortrait size={25} /> About
             </li>
 
+                        <li className="nav-item" onClick={() => scrollToSection("techstack")}>
+              <MdBiotech size={25} color="orange" /> Tech Stack
+            </li>
+
             <li className="nav-item" onClick={() => scrollToSection("workexperience")}>
               <FcFactory size={25} /> Work Experience
             </li>
 
-            <li className="nav-item" onClick={() => scrollToSection("techstack")}>
-              <MdBiotech size={25} color="orange" /> Tech Stack
-            </li>
+
 
             <li className="nav-item" onClick={() => scrollToSection("education")}>
               <MdCastForEducation size={25} color="yellow" /> Education

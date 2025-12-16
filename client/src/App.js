@@ -1,28 +1,29 @@
-import React from "react";
-import "./App.css";
-import Sidebar from "./Components/Sidebar/Sidebar";
-import ScrollToTop from "react-scroll-to-top";
-import { FaArrowUp } from "react-icons/fa";
+import React from 'react';
+import './App.css';
+import Sidebar from './Components/Sidebar/Sidebar';
+import Home from './Components/Home/Home';
+import About from './Components/About/About';
+import TechStack from './Components/TechStack/TechStack';
+import WorkExperience from './Components/WorkExperience/WorkExperience';
+import Education from './Components/Education/Education';
+import Projects from './Components/Projects/Projects';
+// import Certifications from './components/Certifications/Certifications';
+// import Contact from './components/Contact/Contact';
+import FloatingButtons from './Components/FloatingButtons/FloatingButtons';
 
 function App() {
   return (
     <div className="App">
       <Sidebar />
+      <FloatingButtons />
       
-      <ScrollToTop
-        smooth
-        component={<FaArrowUp />}
-        style={{
-          backgroundColor: "#f97316",
-          borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 8px 25px rgba(249, 115, 22, 0.6)",
-          border: "2px solid rgba(255, 255, 255, 0.2)",
-        }}
-        className="scroll-to-top-btn"
-      />
+      <Home />
+      <About />
+      <TechStack />
+      <WorkExperience />
+      <Education />
+      <Projects />
+
     </div>
   );
 }

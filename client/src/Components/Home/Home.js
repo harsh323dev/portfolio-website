@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./Home.css";
 import Typewriter from "typewriter-effect";
-import MyCv from "./cv.pdf";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaInstagram, FaDiscord, FaCode } from "react-icons/fa";
 import { 
@@ -11,8 +10,7 @@ import {
   SiHackerrank, 
   SiCodeforces, 
   SiGeeksforgeeks,
-  SiHackerearth,
-  SiTopcoder
+  SiHackerearth
 } from "react-icons/si";
 
 const Home = () => {
@@ -351,25 +349,9 @@ const Home = () => {
             </a>
           </div>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-        >
-          <div className="cta-buttons">
-            <a href="#contactsection" className="cta-btn primary">
-              <span>Contact Me</span>
-              <div className="btn-glow"></div>
-            </a>
-            <a href={MyCv} download="Harsh_Agarwal_Resume.pdf" className="cta-btn secondary">
-              <span>Get Resume</span>
-              <div className="btn-glow"></div>
-            </a>
-          </div>
-        </motion.div>
       </div>
 
+      {/* Scroll Indicator - LEFT SIDE */}
       <div className="scroll-indicator">
         <div className="mouse"></div>
         <p>Scroll Down</p>
