@@ -30,38 +30,19 @@ const Home = () => {
   // Scroll to Top Handler
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      console.log('Scroll Position:', scrollPosition); // DEBUG
-      
-      if (scrollPosition > 300) {
-        setShowScrollTop(true);
-        console.log('Show Scroll Button: TRUE'); // DEBUG
-      } else {
-        setShowScrollTop(false);
-        console.log('Show Scroll Button: FALSE'); // DEBUG
-      }
+      setShowScrollTop(window.pageYOffset > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
-    
-    // Check initial scroll position
     handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    console.log('Scroll to Top Clicked!'); // DEBUG
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const downloadCV = () => {
-    console.log('Download CV Clicked!'); // DEBUG
     const link = document.createElement('a');
     link.href = process.env.PUBLIC_URL + '/cv.pdf';
     link.download = 'Harsh_Agarwal_Resume.pdf';
@@ -70,7 +51,7 @@ const Home = () => {
     document.body.removeChild(link);
   };
 
-  // Particle Animation
+  // Optimized Particle Animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -80,15 +61,16 @@ const Home = () => {
     canvas.height = window.innerHeight;
 
     const particles = [];
-    const particleCount = 100;
+    const particleCount = 80; // Reduced for better performance
 
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.5 + 0.2;
       }
 
       update() {
@@ -101,7 +83,7 @@ const Home = () => {
       }
 
       draw() {
-        ctx.fillStyle = "rgba(249, 115, 22, 0.5)";
+        ctx.fillStyle = `rgba(249, 115, 22, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -112,13 +94,14 @@ const Home = () => {
       particles.push(new Particle());
     }
 
+    let animationFrameId;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((particle) => {
         particle.update();
         particle.draw();
       });
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
@@ -129,7 +112,10 @@ const Home = () => {
     };
 
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   const codeSnippets = [
@@ -152,9 +138,9 @@ const Home = () => {
             key={index}
             className="code-snippet"
             style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${10 + Math.random() * 5}s`,
+              left: `${10 + index * 13}%`,
+              animationDelay: `${index * 0.8}s`,
+              animationDuration: `${12 + index * 1.5}s`,
             }}
           >
             {code}
@@ -164,21 +150,19 @@ const Home = () => {
 
       {/* Floating Action Buttons */}
       <div className="floating-buttons">
-        {/* Download Resume - Always Visible */}
-        <button 
-          onClick={downloadCV} 
-          className="fab-button fab-resume" 
+        <button
+          onClick={downloadCV}
+          className="fab-button fab-resume"
           title="Download Resume"
           aria-label="Download Resume"
         >
           <FaFileDownload className="fab-icon" />
         </button>
 
-        {/* Scroll to Top - Conditional */}
         {showScrollTop && (
-          <button 
-            onClick={scrollToTop} 
-            className="fab-button fab-scroll-top" 
+          <button
+            onClick={scrollToTop}
+            className="fab-button fab-scroll-top"
             title="Scroll to Top"
             aria-label="Scroll to Top"
           >
@@ -194,22 +178,25 @@ const Home = () => {
           </h1>
         </div>
 
-        <div className="typewriter-container">
-          <Typewriter
-            options={{
-              strings: [
-                "Java Developer",
-                "Spring Boot Expert",
-                "Full Stack Engineer",
-                "Problem Solver",
-              ],
-              autoStart: true,
-              loop: true,
-              delay: 80,
-              deleteSpeed: 50,
-            }}
-          />
-        </div>
+<div className="typewriter-container">
+  <Typewriter
+    options={{
+      strings: [
+        "Java Developer \u2615",              // ☕
+        "Node.js Developer \u26A1",          // ⚡
+        "Full Stack Developer \u{1F4BB}",    // 💻
+        "Problem Solver \u{1F9E0}",          // 🧠
+        "Tech Enthusiast \u{1F3AE}",         // 🖥️
+        // "Open Source Contributor \u{1F680}", // 🚀
+      ],
+      autoStart: true,
+      loop: true,
+      delay: 80,
+      deleteSpeed: 50,
+    }}
+  />
+</div>
+
 
         <div className="stats-grid">
           <div className="stat-card">
@@ -232,19 +219,39 @@ const Home = () => {
             CONNECT WITH ME
           </h3>
           <div className="social-links">
-            <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon linkedin">
+            <a
+              href={SOCIAL_LINKS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon linkedin"
+            >
               <FaLinkedin />
             </a>
-            <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="social-icon github">
+            <a
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon github"
+            >
               <FaGithub />
             </a>
-            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="social-icon instagram">
+            <a
+              href={SOCIAL_LINKS.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon instagram"
+            >
               <FaInstagram />
             </a>
             <a href={SOCIAL_LINKS.gmail} className="social-icon gmail">
               <FaEnvelope />
             </a>
-            <a href={SOCIAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="social-icon discord">
+            <a
+              href={SOCIAL_LINKS.discord}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon discord"
+            >
               <FaDiscord />
             </a>
           </div>
@@ -256,25 +263,60 @@ const Home = () => {
             CODING PROFILES
           </h3>
           <div className="coding-links">
-            <a href={CODING_PROFILES.leetcode} target="_blank" rel="noopener noreferrer" className="coding-icon leetcode">
+            <a
+              href={CODING_PROFILES.leetcode}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="coding-icon leetcode"
+            >
               <SiLeetcode />
             </a>
-            <a href={CODING_PROFILES.codechef} target="_blank" rel="noopener noreferrer" className="coding-icon codechef">
+            <a
+              href={CODING_PROFILES.codechef}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="coding-icon codechef"
+            >
               <SiCodechef />
             </a>
-            <a href={CODING_PROFILES.hackerrank} target="_blank" rel="noopener noreferrer" className="coding-icon hackerrank">
+            <a
+              href={CODING_PROFILES.hackerrank}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="coding-icon hackerrank"
+            >
               <SiHackerrank />
             </a>
-            <a href={CODING_PROFILES.codeforces} target="_blank" rel="noopener noreferrer" className="coding-icon codeforces">
+            <a
+              href={CODING_PROFILES.codeforces}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="coding-icon codeforces"
+            >
               <SiCodeforces />
             </a>
-            <a href={CODING_PROFILES.geeksforgeeks} target="_blank" rel="noopener noreferrer" className="coding-icon geeksforgeeks">
+            <a
+              href={CODING_PROFILES.geeksforgeeks}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="coding-icon geeksforgeeks"
+            >
               <SiGeeksforgeeks />
             </a>
-            <a href={CODING_PROFILES.hackerearth} target="_blank" rel="noopener noreferrer" className="coding-icon hackerearth">
+            <a
+              href={CODING_PROFILES.hackerearth}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="coding-icon hackerearth"
+            >
               <SiHackerearth />
             </a>
-            <a href={CODING_PROFILES.codingninjas} target="_blank" rel="noopener noreferrer" className="coding-icon codingninjas">
+            <a
+              href={CODING_PROFILES.codingninjas}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="coding-icon codingninjas"
+            >
               <SiCodingninjas />
             </a>
           </div>
