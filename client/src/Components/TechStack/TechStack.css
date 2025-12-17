@@ -42,13 +42,14 @@
   display: block;
   perspective: 1000px;
   margin-top: 30px;
+  height: 160px;
 }
 
 /* Card container for flip effect */
 .tech-card-container {
   position: relative;
   width: 100%;
-  height: 160px;
+  height: 100%;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
@@ -68,6 +69,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(249, 115, 22, 0.15);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,6 +86,16 @@
   );
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(10px) saturate(180%);
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+/* Back side with code snippet */
+.tech-content-back {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  transform: rotateY(180deg);
+  padding: 15px;
+  z-index: 1;
 }
 
 /* Background logo on front */
@@ -109,13 +121,18 @@
 
 /* Make dark/black logos visible on dark background */
 .tech-logo-image.logo-white {
-  filter: brightness(3.5) contrast(1.2) invert(1);
+  filter: brightness(0) invert(1) brightness(2) contrast(1.5) !important;
+  opacity: 0.25 !important;
 }
 
 .tech-link:hover .tech-logo-bg {
   opacity: 0.22;
   transform: translateY(-50%) rotate(-10deg) scale(1.1);
   right: -10px;
+}
+
+.tech-link:hover .tech-logo-bg .logo-white {
+  opacity: 0.35 !important;
 }
 
 /* Tech name */
@@ -145,7 +162,7 @@
   border-radius: 50%;
   height: 48px;
   width: 48px;
-  color: #0b1020;
+  color: #ffffff !important;
   font-weight: 700;
   font-size: 1rem;
   display: flex;
@@ -155,15 +172,11 @@
   position: relative;
   z-index: 2;
   margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
 }
 
-/* Back side with code snippet */
-.tech-content-back {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-  transform: rotateY(180deg);
-  padding: 15px;
-}
-
+/* Code snippet container */
 .code-snippet-container {
   width: 100%;
   height: 100%;
@@ -171,6 +184,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 10;
 }
 
 /* Code editor header with copy button */
@@ -179,7 +194,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   padding: 0 5px;
 }
 
@@ -196,37 +211,39 @@
 }
 
 .code-dot:nth-child(1) {
-  background: #ff5f56;
+  background: #ff5f56 !important;
 }
 .code-dot:nth-child(2) {
-  background: #ffbd2e;
+  background: #ffbd2e !important;
 }
 .code-dot:nth-child(3) {
-  background: #27c93f;
+  background: #27c93f !important;
 }
 
 /* Copy button */
 .copy-button {
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: 6px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fef3c7;
-  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 20;
 }
 
 .copy-button:hover {
-  background: rgba(0, 0, 0, 0.5);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.7) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .copy-button:active {
@@ -236,37 +253,49 @@
 .copy-text {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   letter-spacing: 0.3px;
+  color: #ffffff !important;
 }
 
-/* Code snippet */
+/* Code snippet box */
 .code-snippet {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 12px 16px;
-  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.5) !important;
+  padding: 16px 20px !important;
+  border-radius: 10px;
   margin: 0;
   width: 100%;
   max-width: 90%;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* CODE TEXT - FORCED VISIBILITY */
 .code-snippet code {
-  font-family: "Fira Code", "Courier New", monospace;
-  font-size: 0.75rem;
-  color: #fef3c7;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  display: block;
-  white-space: pre-wrap;
-  word-break: break-word;
-  line-height: 1.4;
+  font-family: "Courier New", "Consolas", "Monaco", monospace !important;
+  font-size: 0.85rem !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+  display: block !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  line-height: 1.6 !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .tech-name-back {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: white;
-  margin: 10px 0 0 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 12px 0 0 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important;
+  letter-spacing: 0.5px;
 }
 
 /* Load more button */
@@ -312,9 +341,6 @@
 
   .tech-link {
     margin-top: 25px;
-  }
-
-  .tech-card-container {
     height: 150px;
   }
 
@@ -338,11 +364,21 @@
   }
 
   .code-snippet code {
-    font-size: 0.7rem;
+    font-size: 0.75rem !important;
   }
 
   .copy-button {
     padding: 5px 10px;
     font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-link {
+    height: 140px;
+  }
+
+  .code-snippet code {
+    font-size: 0.7rem !important;
   }
 }

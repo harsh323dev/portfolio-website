@@ -22,7 +22,7 @@ const TechStack = () => {
     {
       name: "Express.js",
       url: "https://expressjs.com",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg",
       logoClass: "logo-white",
       snippet: "app.get('/api', (req, res)=>{})",
       description: "Fast web framework",
@@ -121,7 +121,7 @@ const TechStack = () => {
     {
       name: "Vercel",
       url: "https://vercel.com",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original-wordmark.svg",
       logoClass: "logo-white",
       snippet: "vercel --prod",
       description: "Instant deployment",
@@ -181,32 +181,33 @@ const TechStack = () => {
     },
   ];
 
-  const colors = [
-    "#F05032",
-    "#47A248",
-    "#000000",
-    "#61DAFB",
-    "#68A063",
-    "#FF6C37",
-    "#6DB33F",
-    "#DD0031",
-    "#F7DF1E",
-    "#3178C6",
-    "#06B6D4",
-    "#7952B3",
-    "#4479A1",
-    "#2496ED",
-    "#FF9900",
-    "#0078D4",
-    "#000000",
-    "#FF6C37",
-    "#362D59",
-    "#f97316",
-    "#8B5CF6",
-    "#007ACC",
-    "#000000",
-    "#ffffff",
-  ];
+const colors = [
+  "#F05032",     // 1 - Git (red)
+  "#47A248",     // 2 - MongoDB (green)
+  "#10b981",     // 3 - Express (GREEN - NOT WHITE!)
+  "#61DAFB",     // 4 - React (cyan)
+  "#68A063",     // 5 - Node (green)
+  "#FF6C37",     // 6 - Java (orange)
+  "#6DB33F",     // 7 - Spring Boot (green)
+  "#DD0031",     // 8 - Angular (red)
+  "#F7DF1E",     // 9 - JavaScript (yellow)
+  "#3178C6",     // 10 - TypeScript (blue)
+  "#06B6D4",     // 11 - Tailwind (cyan)
+  "#7952B3",     // 12 - Bootstrap (purple)
+  "#4479A1",     // 13 - SQL (blue)
+  "#2496ED",     // 14 - Docker (blue)
+  "#FF9900",     // 15 - AWS (orange)
+  "#0078D4",     // 16 - Azure (blue)
+  "#f97316",     // 17 - Vercel (orange - NOT BLACK!)
+  "#FF6C37",     // 18 - Postman (orange)
+  "#362D59",     // 19 - Sentry (purple)
+  "#f97316",     // 20 - REST APIs (orange)
+  "#8B5CF6",     // 21 - Microservices (purple)
+  "#007ACC",     // 22 - VS Code (blue)
+  "#000000",     // 23 - IntelliJ (black - white text is fine here)
+  "#333333",     // 24 - GitHub (DARK GRAY - NOT WHITE!)
+];
+
 
   const [showMoreTechStack, setShowMoreTechStack] = useState(9);
   const [copiedIndex, setCopiedIndex] = useState(null);
@@ -252,7 +253,6 @@ const TechStack = () => {
                 className="tech-link"
               >
                 <div className="tech-card-container">
-                  {/* Front side */}
                   <div className="tech-content tech-content-front">
                     <div className="tech-logo-bg">
                       <img
@@ -275,7 +275,6 @@ const TechStack = () => {
                     <p className="tech-description">{item.description}</p>
                   </div>
 
-                  {/* Back side with code snippet */}
                   <div className="tech-content tech-content-back">
                     <div className="code-snippet-container">
                       <div className="code-header">

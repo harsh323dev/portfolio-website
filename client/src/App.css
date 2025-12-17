@@ -48,3 +48,27 @@ section {
   min-height: 100vh;
   position: relative;
 }
+
+/* TechStack Code Snippet Override - Force Visibility */
+.code-snippet code {
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  font-family: "Courier New", monospace !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.5px !important;
+  text-align: center !important;
+}
+
+pre.code-snippet {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 2px solid rgba(255, 255, 255, 0.25) !important;
+  padding: 16px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
