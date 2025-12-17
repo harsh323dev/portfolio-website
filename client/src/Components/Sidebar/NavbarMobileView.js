@@ -81,7 +81,7 @@ const NavbarMobileView = ({ theme, changeTheme }) => {
 
           <li className="nav-item-mobileview">
             <Link
-              to="workexperience"
+              to="experience"
               spy={true}
               smooth={true}
               duration={100}
@@ -135,7 +135,7 @@ const NavbarMobileView = ({ theme, changeTheme }) => {
             </Link>
           </li>
 
-          <li className="nav-item-mobileview">
+          {/* <li className="nav-item-mobileview">
             <Link
               to="certifications"
               spy={true}
@@ -147,7 +147,7 @@ const NavbarMobileView = ({ theme, changeTheme }) => {
               <FcSalesPerformance size={25} />
               <span>Certifications</span>
             </Link>
-          </li>
+          </li> */}
 
           <li className="nav-item-mobileview">
             <Link

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FaHome, FaUser, FaCode, FaBriefcase, 
   FaGraduationCap, FaProjectDiagram, 
-  FaCertificate, FaBars, FaTimes 
+FaBars, FaTimes                             //   FaCertificate, 
 } from 'react-icons/fa';
 import './Sidebar.css';
 import profileImg from '../../Image/Profile.jpeg';
@@ -16,10 +16,10 @@ const Sidebar = () => {
     { id: 'home', label: 'Home', icon: <FaHome />, color: '#f97316' },
     { id: 'about', label: 'About', icon: <FaUser />, color: '#3b82f6' },
     { id: 'techstack', label: 'Tech Stack', icon: <FaCode />, color: '#8b5cf6' },
-    { id: 'workexperience', label: 'Experience', icon: <FaBriefcase />, color: '#10b981' },
+    { id: 'experience', label: 'Experience', icon: <FaBriefcase />, color: '#10b981' },
     { id: 'education', label: 'Education', icon: <FaGraduationCap />, color: '#f59e0b' },
     { id: 'projects', label: 'Projects', icon: <FaProjectDiagram />, color: '#ec4899' },
-    { id: 'certifications', label: 'Certifications', icon: <FaCertificate />, color: '#06b6d4' },
+    // { id: 'certifications', label: 'Certifications', icon: <FaCertificate />, color: '#06b6d4' },
   ];
 
   const handleNavClick = (id) => {
@@ -66,7 +66,7 @@ const Sidebar = () => {
                   <div className="status-indicator"></div>
                 </div>
                 <h3 className="profile-name">Harsh Agarwal</h3>
-                <p className="profile-title">Full Stack Developer</p>
+                <p className="profile-title">Software Engineer</p>
               </div>
 
               <nav className="sidebar-nav">

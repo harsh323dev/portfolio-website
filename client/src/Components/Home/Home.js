@@ -10,7 +10,7 @@ const Home = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const SOCIAL_LINKS = {
-    linkedin: "https://www.linkedin.com/in/harsh323",
+    linkedin: "https://www.linkedin.com/harsh323",
     github: "https://github.com/harsh323dev",
     instagram: "https://www.instagram.com/harshagarwal323.ag",
     gmail: "mailto:harshagarwal323.ag@gmail.com",

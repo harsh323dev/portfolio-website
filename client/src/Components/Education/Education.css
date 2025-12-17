@@ -1,395 +1,354 @@
-/* Education Section - Metro/Subway Style */
-.education-section {
-  padding: 200px 30px 150px;
-  min-height: 100vh;
-  color: #f9fafb;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0a0a0a 100%);
+/* Wrapper with global background + effects */
+.education-wrapper {
   position: relative;
-  overflow: visible;
+  padding: 90px 0 110px 0;
+  background: radial-gradient(circle at top left, #020617 0%, #050816 45%, #02010a 100%);
+  color: #f9fafb;
+  overflow: hidden;
 }
 
+/* particle canvas */
+.education-particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.7;
+}
 
-/* Section Title */
-.section-title {
+/* code rain */
+.education-code-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.education-code-snippet {
+  position: absolute;
+  top: -60px;
+  font-family: "Fira Code", "Courier New", monospace;
+  font-size: 11px;
+  color: rgba(96, 165, 250, 0.3);
+  white-space: nowrap;
+  animation: education-fall linear infinite;
+}
+
+@keyframes education-fall {
+  0% {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* inner section card */
+.education-section {
+  position: relative;
+  z-index: 5;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 70px 40px 80px;
+  min-height: 70vh;
+  background: linear-gradient(135deg, #020617 0%, #0b1120 55%, #020617 100%);
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+}
+
+/* title slightly higher & centered */
+.section-title.education-title {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
-.section-title h5 {
-  font-size: 3rem;
+.section-title.education-title h5 {
+  font-size: 2.6rem;
   font-weight: 800;
   background: linear-gradient(135deg, #f97316 0%, #facc15 50%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 15px;
-  animation: titleGlow 3s ease-in-out infinite;
+  margin-bottom: 10px;
+  animation: titleGlowEdu 3s ease-in-out infinite;
 }
 
-@keyframes titleGlow {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.5)); }
-  50% { filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.8)); }
+@keyframes titleGlowEdu {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 18px rgba(249, 115, 22, 0.55));
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(96, 165, 250, 0.9));
+  }
 }
 
-.section-title .line {
+.section-title.education-title .line {
   display: block;
   width: 120px;
   height: 5px;
   background: linear-gradient(90deg, #f97316 0%, #facc15 50%, #60a5fa 100%);
-  margin: 0 auto;
+  margin: 0 auto 12px auto;
   border-radius: 10px;
 }
 
-/* Metro Map Container */
-.metro-map {
-  max-width: 1200px;
-  margin: 0 auto;
+.education-subtitle {
+  font-size: 0.95rem;
+  color: #e5e7eb;
+  opacity: 0.85;
+}
+
+/* vertical timeline layout */
+.edu-timeline {
   position: relative;
-  padding: 80px 40px 120px 40px;  /* Reduced from 150px */
+  margin-top: 40px;
+  padding: 10px 0 20px;
 }
 
-
-/* Metro Line (Railway Track) */
-.metro-line {
+/* center vertical line */
+.edu-timeline-line {
   position: absolute;
-  top: 50%;
-  left: 5%;
-  right: 5%;
-  height: 8px;
-  background: linear-gradient(90deg, #60a5fa 0%, #f97316 50%, #facc15 100%);
-  transform: translateY(-50%);
-  border-radius: 10px;
-  box-shadow: 
-    0 0 20px rgba(96, 165, 250, 0.5),
-    inset 0 2px 4px rgba(0, 0, 0, 0.3);
-  z-index: 0;
-}
-
-.metro-line::before,
-.metro-line::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  background: white;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-}
-
-.metro-line::before { left: -10px; }
-.metro-line::after { right: -10px; }
-
-/* Animated Train */
-.metro-train {
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  width: 40px;
-  height: 24px;
-  background: linear-gradient(135deg, #f97316, #facc15);
-  border-radius: 6px;
-  transform: translateY(-50%);
-  z-index: 1;
-  animation: trainMove 8s ease-in-out infinite;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.6);
-}
-
-.metro-train::before {
-  content: '🚄';
-  position: absolute;
-  top: 50%;
+  top: 0;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
+  transform: translateX(-50%);
+  width: 4px;
+  background: linear-gradient(180deg, rgba(148, 163, 184, 0.2), #f97316, rgba(148, 163, 184, 0.2));
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.55);
 }
 
-@keyframes trainMove {
-  0%, 100% { left: 5%; }
-  50% { left: 90%; }
+/* each item */
+.edu-timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 25px 32px;
 }
 
-/* Metro Stations */
-.metro-station {
+.edu-timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.edu-timeline-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+/* node on the central line */
+.edu-timeline-node {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-}
-
-.metro-station.station-1 { left: 10%; }
-.metro-station.station-2 { left: 50%; transform: translate(-50%, -50%); }
-.metro-station.station-3 { right: 10%; }
-
-/* Station Marker */
-.station-marker {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  top: 32px;
+  right: -10px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 3px solid #f97316;
+  background: #020617;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.6);
+}
+
+.edu-timeline-item.right .edu-timeline-node {
+  left: -10px;
+  right: auto;
+}
+
+.edu-node-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0b1120;
+  font-size: 12px;
+}
+
+/* glass card */
+.edu-card {
   position: relative;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  box-shadow: 
-    0 0 0 5px rgba(255, 255, 255, 0.2),
-    0 8px 20px rgba(0, 0, 0, 0.4);
-  animation: stationAppear 0.6s ease-out forwards;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(18px);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: eduFadeUp 0.8s ease-out forwards;
   opacity: 0;
 }
 
-.station-1 .station-marker { animation-delay: 0.2s; }
-.station-2 .station-marker { animation-delay: 0.4s; }
-.station-3 .station-marker { animation-delay: 0.6s; }
+.edu-timeline-item:nth-child(1) .edu-card {
+  animation-delay: 0.1s;
+}
+.edu-timeline-item:nth-child(2) .edu-card {
+  animation-delay: 0.25s;
+}
+.edu-timeline-item:nth-child(3) .edu-card {
+  animation-delay: 0.4s;
+}
 
-@keyframes stationAppear {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+@keyframes eduFadeUp {
   from {
     opacity: 0;
-    transform: scale(0);
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.station-marker:hover {
-  transform: scale(1.2);
-  box-shadow: 
-    0 0 0 8px rgba(255, 255, 255, 0.3),
-    0 12px 30px rgba(0, 0, 0, 0.6);
-}
-
-.station-icon {
-  font-size: 28px;
-  color: white;
-  z-index: 2;
-}
-
-/* Pulsing Effect */
-.station-pulse {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  background: inherit;
-  opacity: 0.6;
-  animation: pulse 2s ease-out infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1.8);
-    opacity: 0;
-  }
-}
-
-/* Station Card */
-.station-card {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px;
-  background: rgba(17, 24, 39, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  transition: all 0.4s ease;
-  pointer-events: none;
-}
-
-.station-card.card-top {
-  bottom: 90px;
-}
-
-.station-card.card-bottom {
-  top: 90px;
-}
-
-.station-marker:hover + .station-card {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: all;
-}
-
-.station-card.card-top {
-  animation: slideDown 0.5s ease-out 0.8s forwards;
-}
-
-.station-card.card-bottom {
-  animation: slideUp 0.5s ease-out 0.8s forwards;
-}
-
-@keyframes slideDown {
-  to { opacity: 1; }
-  from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-}
-
-@keyframes slideUp {
-  to { opacity: 1; }
-  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-}
-
-/* Card Arrow */
-.card-arrow {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-}
-
-.card-top .card-arrow {
-  bottom: -12px;
-  border-top: 12px solid;
-}
-
-.card-bottom .card-arrow {
-  top: -12px;
-  border-bottom: 12px solid;
-}
-
-/* Card Header */
-.card-header {
-  padding: 15px 20px;
+/* card header/body */
+.edu-card-header {
+  padding: 14px 18px;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.card-header h3 {
-  font-size: 1.1rem;
+.edu-institution h3 {
+  font-size: 1.05rem;
   font-weight: 700;
-  margin: 0;
-  line-height: 1.3;
+  margin: 0 0 4px 0;
 }
 
-.duration {
-  font-size: 0.75rem;
+.edu-duration {
+  display: inline-block;
+  font-size: 0.78rem;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(15, 23, 42, 0.35);
   padding: 4px 10px;
-  border-radius: 12px;
-  white-space: nowrap;
+  border-radius: 999px;
 }
 
-/* Card Body */
-.card-body {
-  padding: 20px;
+.edu-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.4);
 }
 
-.card-body h4 {
-  font-size: 1rem;
+.edu-card-body {
+  padding: 18px 18px 20px;
+}
+
+.edu-card-body h4 {
+  font-size: 0.98rem;
   font-weight: 600;
-  color: white;
   margin: 0 0 10px 0;
 }
 
-.grade-badge {
+.edu-grade {
   display: inline-block;
   padding: 6px 12px;
+  border-radius: 999px;
   border: 2px solid;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   margin-bottom: 12px;
 }
 
-.card-body p {
+.edu-card-body p {
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: #d1d5db;
   margin: 0;
 }
 
-/* Mobile Responsive */
-@media (max-width: 1024px) {
-  .metro-map {
-    padding: 200px 20px;
-  }
-
-  .station-card {
-    width: 240px;
-  }
+/* scroll hint */
+.education-scroll-hint {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: #9ca3af;
+  text-transform: uppercase;
 }
 
-@media (max-width: 768px) {
+/* responsive */
+@media (max-width: 900px) {
   .education-section {
-    padding: 60px 15px 80px;
+    padding: 56px 22px 60px;
+    border-radius: 22px;
   }
 
-  .section-title h5 {
+  .section-title.education-title h5 {
     font-size: 2.2rem;
   }
 
-  .metro-map {
-    padding: 100px 10px;
-  }
-
-  .metro-line {
-    top: 30%;
-    left: 30px;
-    right: 30px;
-  }
-
-  .metro-station {
-    position: relative;
-    top: auto;
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
-    margin-bottom: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .station-marker {
-    position: relative;
-    margin-bottom: 20px;
-  }
-
-  .station-card {
-    position: relative;
-    opacity: 1;
+  .edu-timeline-line {
+    left: 10px;
     transform: none;
-    top: auto;
-    bottom: auto;
-    left: auto;
-    pointer-events: all;
+  }
+
+  .edu-timeline-item,
+  .edu-timeline-item.left,
+  .edu-timeline-item.right {
     width: 100%;
-    max-width: 320px;
+    padding: 22px 16px 22px 38px;
+    left: 0;
+    text-align: left;
   }
 
-  .card-arrow {
+  .edu-timeline-node {
+    left: 0;
+    right: auto;
+  }
+
+  .edu-card {
+    margin-left: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .education-wrapper {
+    padding: 70px 0 90px 0;
+  }
+
+  .education-section {
+    padding: 40px 14px 48px;
+  }
+
+  .education-code-rain {
+    width: 70%;
+  }
+
+  .education-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .edu-card-body p {
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .education-code-rain {
     display: none;
   }
 
-  .metro-line {
-    width: 6px;
-    height: 80%;
-    left: 50%;
-    top: 10%;
-    transform: translateX(-50%);
-  }
-
-  .metro-train {
-    display: none;
+  .edu-card {
+    margin-left: 16px;
   }
 }
