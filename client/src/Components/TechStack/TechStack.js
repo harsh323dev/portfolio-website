@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./TechStack.css";
 import { motion } from "framer-motion";
 import { FiCopy, FiCheck } from "react-icons/fi";
 
 const TechStack = () => {
+  const [showMoreTechStack, setShowMoreTechStack] = useState(9);
+  const [copiedIndex, setCopiedIndex] = useState(null);
+  const canvasRef = useRef(null);
+
   const data = [
     {
       name: "Git",
@@ -24,7 +28,7 @@ const TechStack = () => {
       url: "https://expressjs.com",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg",
       logoClass: "logo-white",
-      snippet: "app.get('/api', (req, res)=>{})",
+      snippet: "app.get('/api', (req, res) => {})",
       description: "Fast web framework",
     },
     {
@@ -168,7 +172,7 @@ const TechStack = () => {
       url: "https://www.jetbrains.com/idea/",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg",
       logoClass: "logo-white",
-      snippet: "Alt+Enter (Quick Fix)",
+      snippet: "Alt+Enter // Quick Fix",
       description: "Java IDE",
     },
     {
@@ -181,36 +185,32 @@ const TechStack = () => {
     },
   ];
 
-const colors = [
-  "#F05032",     // 1 - Git (red)
-  "#47A248",     // 2 - MongoDB (green)
-  "#10b981",     // 3 - Express (GREEN - NOT WHITE!)
-  "#61DAFB",     // 4 - React (cyan)
-  "#68A063",     // 5 - Node (green)
-  "#FF6C37",     // 6 - Java (orange)
-  "#6DB33F",     // 7 - Spring Boot (green)
-  "#DD0031",     // 8 - Angular (red)
-  "#F7DF1E",     // 9 - JavaScript (yellow)
-  "#3178C6",     // 10 - TypeScript (blue)
-  "#06B6D4",     // 11 - Tailwind (cyan)
-  "#7952B3",     // 12 - Bootstrap (purple)
-  "#4479A1",     // 13 - SQL (blue)
-  "#2496ED",     // 14 - Docker (blue)
-  "#FF9900",     // 15 - AWS (orange)
-  "#0078D4",     // 16 - Azure (blue)
-  "#f97316",     // 17 - Vercel (orange - NOT BLACK!)
-  "#FF6C37",     // 18 - Postman (orange)
-  "#362D59",     // 19 - Sentry (purple)
-  "#f97316",     // 20 - REST APIs (orange)
-  "#8B5CF6",     // 21 - Microservices (purple)
-  "#007ACC",     // 22 - VS Code (blue)
-  "#000000",     // 23 - IntelliJ (black - white text is fine here)
-  "#333333",     // 24 - GitHub (DARK GRAY - NOT WHITE!)
-];
-
-
-  const [showMoreTechStack, setShowMoreTechStack] = useState(9);
-  const [copiedIndex, setCopiedIndex] = useState(null);
+  const colors = [
+    "#F05032",
+    "#47A248",
+    "#10b981",
+    "#61DAFB",
+    "#68A063",
+    "#FF6C37",
+    "#6DB33F",
+    "#DD0031",
+    "#F7DF1E",
+    "#3178C6",
+    "#06B6D4",
+    "#7952B3",
+    "#4479A1",
+    "#2496ED",
+    "#FF9900",
+    "#0078D4",
+    "#f97316",
+    "#FF6C37",
+    "#362D59",
+    "#f97316",
+    "#8B5CF6",
+    "#007ACC",
+    "#000000",
+    "#333333",
+  ];
 
   const loadMore = () => {
     setShowMoreTechStack((prev) => prev + 3);
@@ -228,12 +228,105 @@ const colors = [
     }
   };
 
+  // subtle particles in background, like Home/About
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    const resize = () => {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    };
+    resize();
+
+    const particles = [];
+    const count = 60;
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.r = Math.random() * 2 + 0.5;
+        this.sx = (Math.random() - 0.5) * 0.2;
+        this.sy = (Math.random() - 0.5) * 0.2;
+        this.a = Math.random() * 0.4 + 0.15;
+      }
+      update() {
+        this.x += this.sx;
+        this.y += this.sy;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.fillStyle = `rgba(249, 115, 22, ${this.a})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < count; i++) particles.push(new Particle());
+
+    let id;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+      id = requestAnimationFrame(animate);
+    };
+    animate();
+
+    window.addEventListener("resize", resize);
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(id);
+    };
+  }, []);
+
+  // code rain snippets (like home/about)
+  const codeRainSnippets = [
+    "const stack = ['Git','React'];",
+    "while(true){ learn(); }",
+    "app.listen(8080);",
+    "SELECT * FROM skills;",
+    "docker run dev-portfolio",
+    "kubectl get pods",
+  ];
+
   return (
     <section className="techstack-wrapper" id="techstack">
+      {/* particles */}
+      <canvas ref={canvasRef} className="techstack-particle-canvas" />
+
+      {/* code rain left side */}
+      <div className="techstack-code-rain">
+        {codeRainSnippets.map((c, i) => (
+          <div
+            key={i}
+            className="techstack-code-snippet"
+            style={{
+              left: `${5 + i * 12}%`,
+              animationDelay: `${i * 1.2}s`,
+              animationDuration: `${14 + i * 2}s`,
+            }}
+          >
+            {c}
+          </div>
+        ))}
+      </div>
+
       <div className="container techstack-section">
-        <div className="section-title">
+        <div className="section-title techstack-title">
           <h5>Tech Stack</h5>
-          <span className="line"></span>
+          <span className="line" />
         </div>
 
         <div className="row">
@@ -253,6 +346,7 @@ const colors = [
                 className="tech-link"
               >
                 <div className="tech-card-container">
+                  {/* FRONT */}
                   <div className="tech-content tech-content-front">
                     <div className="tech-logo-bg">
                       <img
@@ -260,7 +354,7 @@ const colors = [
                         alt={`${item.name} logo`}
                         className={`tech-logo-image ${item.logoClass || ""}`}
                         onError={(e) => {
-                          e.target.style.opacity = '0.05';
+                          e.target.style.opacity = "0.05";
                         }}
                       />
                     </div>
@@ -275,13 +369,14 @@ const colors = [
                     <p className="tech-description">{item.description}</p>
                   </div>
 
+                  {/* BACK */}
                   <div className="tech-content tech-content-back">
                     <div className="code-snippet-container">
                       <div className="code-header">
                         <div className="code-dots">
-                          <span className="code-dot"></span>
-                          <span className="code-dot"></span>
-                          <span className="code-dot"></span>
+                          <span className="code-dot" />
+                          <span className="code-dot" />
+                          <span className="code-dot" />
                         </div>
                         <button
                           className="copy-button"
@@ -301,9 +396,11 @@ const colors = [
                           )}
                         </button>
                       </div>
-                      <pre className="code-snippet">
+
+                      <pre className="code-snippet-box">
                         <code>{item.snippet}</code>
                       </pre>
+
                       <p className="tech-name-back">{item.name}</p>
                     </div>
                   </div>
@@ -313,7 +410,7 @@ const colors = [
           ))}
         </div>
 
-        {showMoreTechStack >= data.length ? null : (
+        {showMoreTechStack < data.length && (
           <motion.span
             className="load-more-tech-stack"
             onClick={loadMore}
