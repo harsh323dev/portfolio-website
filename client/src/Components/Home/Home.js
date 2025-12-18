@@ -14,7 +14,7 @@ const Home = () => {
     github: "https://github.com/harsh323dev",
     instagram: "https://www.instagram.com/harshagarwal323.ag",
     gmail: "mailto:harshagarwal323.ag@gmail.com",
-    discord: "https://discordapp.com/users/harsh323",
+    discord: "https://discord.gg/hMZEWwFm",
   };
 
   const CODING_PROFILES = {
