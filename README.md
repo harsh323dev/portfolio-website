@@ -61,7 +61,7 @@ Animations --> Hover[3D Hover Cards]
 <div align="center">
 
 
-**👨‍💻 Built by [Harsh Agarwal](https://linkedin.com/harsh323)**
+**👨‍💻 Built by [Harsh Agarwal](https://linkedin.com/in/harsh323)**
 
 
 </div>
