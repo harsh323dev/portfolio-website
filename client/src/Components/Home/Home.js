@@ -182,9 +182,10 @@ const Home = () => {
   <Typewriter
     options={{
       strings: [
+        "Full Stack Developer \u{1F4BB}",    // 💻
         "Java Developer \u2615",              // ☕
         "Node.js Developer \u26A1",          // ⚡
-        "Full Stack Developer \u{1F4BB}",    // 💻
+        
         "Problem Solver \u{1F9E0}",          // 🧠
         "Tech Enthusiast \u{1F3AE}",         // 🖥️
         // "Open Source Contributor \u{1F680}", // 🚀
