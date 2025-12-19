@@ -44,7 +44,7 @@ const Home = () => {
 
   const downloadCV = () => {
     const link = document.createElement('a');
-    link.href = process.env.PUBLIC_URL + '/cv.pdf';
+    link.href = process.env.PUBLIC_URL + 'HARSH_AGARWAL_RESUME.pdf';
     link.download = 'Harsh_Agarwal_Resume.pdf';
     document.body.appendChild(link);
     link.click();
