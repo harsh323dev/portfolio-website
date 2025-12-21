@@ -506,7 +506,7 @@
     top: auto;
     bottom: 20px;
     transform: none;
-    flex-direction: row;
+    flex-direction: column;
     gap: 12px;
     display: flex !important;
     visibility: visible !important;
