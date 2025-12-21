@@ -7,6 +7,16 @@
   scroll-margin-top: 0;
   overflow: hidden;
 }
+/* GPU hint for smoother animations */
+.techstack-particle-canvas,
+.workexperience-particle-canvas {
+  will-change: transform, opacity;
+}
+
+.techstack-code-snippet,
+.workexperience-code-snippet {
+  will-change: transform, opacity;
+}
 
 /* Particle canvas */
 .techstack-particle-canvas {

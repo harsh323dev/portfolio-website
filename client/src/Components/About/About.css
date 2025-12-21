@@ -107,7 +107,6 @@
   box-shadow: 0 25px 70px rgba(96, 165, 250, 0.3);
 }
 
-/* Make terminal clickable before started */
 .terminal-card:not(:has(.terminal-command)) {
   cursor: pointer;
 }
@@ -168,7 +167,6 @@
   background: #0f172a;
 }
 
-/* Terminal Prompt - Before Click */
 .terminal-prompt {
   display: flex;
   align-items: center;
@@ -299,7 +297,7 @@
 }
 
 .skill-tag {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background: rgba(96, 165, 250, 0.1);
   border: 1px solid rgba(96, 165, 250, 0.3);
   border-radius: 20px;
@@ -308,13 +306,26 @@
   color: #60a5fa;
   transition: all 0.3s ease;
   cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-icon {
+  font-size: 1.1rem;
+  color: #60a5fa;
+  transition: transform 0.3s ease;
 }
 
 .skill-tag:hover {
   background: rgba(96, 165, 250, 0.2);
   border-color: rgba(96, 165, 250, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
+}
+
+.skill-tag:hover .skill-icon {
+  transform: scale(1.2) rotate(10deg);
 }
 
 /* Responsive */
@@ -351,13 +362,24 @@
     width: 100%;
   }
 
+  /* MOBILE GRID: 3 COLUMNS */
   .skill-highlights {
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: stretch;
   }
 
   .skill-tag {
-    padding: 8px 16px;
-    font-size: 0.8rem;
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  .skill-icon {
+    font-size: 0.95rem;
   }
 
   .terminal-body {
@@ -367,44 +389,15 @@
   }
 }
 
-/* Skill Highlights */
-.skill-highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 30px;
-  padding-top: 30px;
-  border-top: 1px solid rgba(96, 165, 250, 0.15);
-}
+@media (max-width: 480px) {
+  /* SMALL MOBILE: 2 COLUMNS */
+  .skill-highlights {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
 
-.skill-tag {
-  padding: 12px 24px;
-  background: rgba(96, 165, 250, 0.1);
-  border: 1px solid rgba(96, 165, 250, 0.3);
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #60a5fa;
-  transition: all 0.3s ease;
-  cursor: default;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.skill-icon {
-  font-size: 1.1rem;
-  color: #60a5fa;
-  transition: transform 0.3s ease;
-}
-
-.skill-tag:hover {
-  background: rgba(96, 165, 250, 0.2);
-  border-color: rgba(96, 165, 250, 0.5);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
-}
-
-.skill-tag:hover .skill-icon {
-  transform: scale(1.2) rotate(10deg);
+  .skill-tag {
+    padding: 8px 10px;
+    font-size: 0.7rem;
+  }
 }
