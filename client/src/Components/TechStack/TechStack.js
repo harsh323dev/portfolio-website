@@ -186,30 +186,10 @@ const TechStack = () => {
   ];
 
   const colors = [
-    "#F05032",
-    "#47A248",
-    "#10b981",
-    "#61DAFB",
-    "#68A063",
-    "#FF6C37",
-    "#6DB33F",
-    "#DD0031",
-    "#F7DF1E",
-    "#3178C6",
-    "#06B6D4",
-    "#7952B3",
-    "#4479A1",
-    "#2496ED",
-    "#FF9900",
-    "#0078D4",
-    "#f97316",
-    "#FF6C37",
-    "#362D59",
-    "#f97316",
-    "#8B5CF6",
-    "#007ACC",
-    "#000000",
-    "#333333",
+    "#F05032", "#47A248", "#10b981", "#61DAFB", "#68A063", "#FF6C37",
+    "#6DB33F", "#DD0031", "#F7DF1E", "#3178C6", "#06B6D4", "#7952B3",
+    "#4479A1", "#2496ED", "#FF9900", "#0078D4", "#f97316", "#FF6C37",
+    "#362D59", "#f97316", "#8B5CF6", "#007ACC", "#000000", "#333333",
   ];
 
   const loadMore = () => {
@@ -228,7 +208,6 @@ const TechStack = () => {
     }
   };
 
-  // subtle particles in background, like Home/About
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -242,7 +221,7 @@ const TechStack = () => {
     resize();
 
     const particles = [];
-    const count = 60;
+    const count = 40;
 
     class Particle {
       constructor() {
@@ -291,7 +270,6 @@ const TechStack = () => {
     };
   }, []);
 
-  // code rain snippets (like home/about)
   const codeRainSnippets = [
     "const stack = ['Git','React'];",
     "while(true){ learn(); }",
@@ -303,10 +281,8 @@ const TechStack = () => {
 
   return (
     <section className="techstack-wrapper" id="techstack">
-      {/* particles */}
       <canvas ref={canvasRef} className="techstack-particle-canvas" />
 
-      {/* code rain left side */}
       <div className="techstack-code-rain">
         {codeRainSnippets.map((c, i) => (
           <div
@@ -346,13 +322,16 @@ const TechStack = () => {
                 className="tech-link"
               >
                 <div className="tech-card-container">
-                  {/* FRONT */}
                   <div className="tech-content tech-content-front">
                     <div className="tech-logo-bg">
                       <img
                         src={item.logo}
                         alt={`${item.name} logo`}
                         className={`tech-logo-image ${item.logoClass || ""}`}
+                        loading="lazy"
+                        decoding="async"
+                        width="80"
+                        height="80"
                         onError={(e) => {
                           e.target.style.opacity = "0.05";
                         }}
@@ -369,7 +348,6 @@ const TechStack = () => {
                     <p className="tech-description">{item.description}</p>
                   </div>
 
-                  {/* BACK */}
                   <div className="tech-content tech-content-back">
                     <div className="code-snippet-container">
                       <div className="code-header">

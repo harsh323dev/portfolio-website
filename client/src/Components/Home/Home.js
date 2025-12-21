@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
+import { Link as ScrollLink } from "react-scroll";
 import { FaLinkedin, FaGithub, FaInstagram, FaDiscord, FaEnvelope, FaArrowUp, FaFileDownload } from "react-icons/fa";
 import { SiLeetcode, SiCodechef, SiHackerrank, SiCodeforces, SiGeeksforgeeks, SiHackerearth, SiCodingninjas } from "react-icons/si";
 import { BsMessenger } from "react-icons/bs";
+import { HiArrowRight } from "react-icons/hi";
 import "./Home.css";
 
 const Home = () => {
@@ -14,7 +16,7 @@ const Home = () => {
     github: "https://github.com/harsh323dev",
     instagram: "https://www.instagram.com/harshagarwal323.ag",
     gmail: "mailto:harshagarwal323.ag@gmail.com",
-    discord: "https://discord.gg/hMZEWwFm",
+    discord: "https://discord.gg/Gsm7gppAAM",
   };
 
   const CODING_PROFILES = {
@@ -61,7 +63,7 @@ const Home = () => {
     canvas.height = window.innerHeight;
 
     const particles = [];
-    const particleCount = 80; // Reduced for better performance
+    const particleCount = 80;
 
     class Particle {
       constructor() {
@@ -178,26 +180,23 @@ const Home = () => {
           </h1>
         </div>
 
-<div className="typewriter-container">
-  <Typewriter
-    options={{
-      strings: [
-        "Full Stack Developer \u{1F4BB}",    // 💻
-        "Java Developer \u2615",              // ☕
-        "Node.js Developer \u26A1",          // ⚡
-        
-        "Problem Solver \u{1F9E0}",          // 🧠
-        "Tech Enthusiast \u{1F3AE}",         // 🖥️
-        // "Open Source Contributor \u{1F680}", // 🚀
-      ],
-      autoStart: true,
-      loop: true,
-      delay: 80,
-      deleteSpeed: 50,
-    }}
-  />
-</div>
-
+        <div className="typewriter-container">
+          <Typewriter
+            options={{
+              strings: [
+                "Full Stack Developer \u{1F4BB}",
+                "Java Developer \u2615",
+                "Node.js Developer \u26A1",
+                "Problem Solver \u{1F9E0}",
+                "Tech Enthusiast \u{1F3AE}",
+              ],
+              autoStart: true,
+              loop: true,
+              delay: 80,
+              deleteSpeed: 50,
+            }}
+          />
+        </div>
 
         <div className="stats-grid">
           <div className="stat-card">
@@ -212,6 +211,20 @@ const Home = () => {
             <div className="stat-number">100+</div>
             <div className="stat-label">PROBLEMS SOLVED</div>
           </div>
+        </div>
+
+        {/* View Projects Button */}
+        <div className="cta-section">
+          <ScrollLink
+            to="projects"
+            smooth={true}
+            duration={700}
+            offset={-80}
+            className="hero-primary-cta"
+          >
+            <span>View My Projects</span>
+            <HiArrowRight className="cta-arrow" />
+          </ScrollLink>
         </div>
 
         <div className="links-section">
